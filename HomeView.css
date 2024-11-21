@@ -1,0 +1,182 @@
+body{
+  /*I need to figure out how to apply numeric values to a gradient, but this works i guess*/
+  background-image: linear-gradient(lightgray, white, white, white, white, white, white, white, white, white, white, white);
+  
+  }
+  
+
+.SearchDiv{
+  position: relative;
+}
+.search_field{
+  width: 500px;
+  background: white;
+  padding-left:1.3em;
+  border-radius: 25px;
+  background: lightgrey;
+  font-weight: 500;
+  font-size: 30px;
+  box-shadow: 0 4px 6px -1px #001d2910, 0 2px 4px -2px #001d2910;
+  display: flex;
+  align-items: center;
+  position: relative;
+  will-change: transform;
+}
+.submit_button{
+  position:absolute;
+  top: -1px;
+  left: 3px;
+  font-size: 30px;
+  border: none;
+  transform: scale(-1, 1);
+  background: none;
+}
+
+.submit_button:hover{
+  color: white;
+}
+.mainBlock {
+  margin: 10px;
+  padding: 10px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  background: lightblue;
+}
+
+.chart{
+  position: absolute;
+  left: 350px;
+  width: 25%; 
+  height: 50px
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+
+
+  
+  
+  
+  /*DRAG DROP CSS*/
+  * {
+  box-sizing: border-box;
+}
+
+:root {
+  height: 100%;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+ 
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+
+.list {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  width: 100%;
+  gap: 10px 0;
+}
+
+.list__item {
+
+width: 100%;
+  background: white;
+  padding: 1px;
+  padding-left: 40px;
+  height: 50px;
+  border-radius: 25px;
+  color: #001d29;
+  font-weight: 500;
+  font-size: 18px;
+  box-shadow: 0 4px 6px -1px #001d2910, 0 2px 4px -2px #001d2910;
+  
+  display: flex;
+  align-items: center;
+  position: relative;
+  will-change: transform;
+}
+
+.symbol{
+  
+  position: absolute;
+  width: 100px;
+  background: pink;
+  height: 35px;
+  border-radius: 25px;
+ 
+  font-weight: 500;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;  /* Center horizontally */
+  align-items: center;      /* Center vertically */
+ 
+}
+.stonk{
+   position: absolute;
+  left: 168px;
+  
+}
+
+.drag-handle {
+  position: absolute;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.drag-handle::after {
+  content: '⠿';
+  font-size: 25px;
+  color: #00000099;
+}
+
+.list__item.is-idle .drag-handle {
+  cursor: grab;
+}
+
+.list__item.is-idle {
+  transition: 0.25s ease transform;
+}
+
+.list__item.is-draggable,
+.list__item.is-draggable .drag-handle {
+  cursor: grabbing;
+}
+
+.list__item.is-draggable {
+  z-index: 10;
+}
