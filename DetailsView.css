@@ -1,0 +1,48 @@
+
+.mainBlock {
+  margin: 10px;
+  padding: 10px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+   border-radius: 8px;
+   
+}
+.First {
+  background: green;
+}
+
+.Left {
+  text-align: left;
+  background: red;
+}
+
+.Right {
+  text-align: left;
+
+  background: blue;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 20px;
+}
+td:nth-child(even) {
+  font-weight: bold;
+  text-align: right;
+  
+}
+td {
+ 
+  
+ white-space: nowrap;
+    overflow: visible;
+}
+
+body{
+  /*I need to figure out how to apply numeric values to a gradient, but this works i guess*/
+  background-image: linear-gradient(lightgray, white, white, white, white, white, white, white, white, white, white, white, white);
+  }
+
