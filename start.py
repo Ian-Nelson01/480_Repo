@@ -1,6 +1,5 @@
 import http.server
 import socketserver
-import emoji
 # This is an test for a simple local server 
 
 
