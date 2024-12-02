@@ -1,3 +1,47 @@
+/***********************
+*   SEARCH DROPDOWN    *
+***********************/
+		function toggleDropdown() {
+			const dropdownContent =
+				document.getElementById("myDropdown");
+			if (dropdownContent.style.display === "block") {
+				dropdownContent.style.display = "none";
+			} else {
+				dropdownContent.style.display = "block";
+			}
+		}
+
+		window.onclick = function (event) {
+			if (!event.target.matches('.submit_button')) {
+				const dropdowns =
+					document.getElementsByClassName
+						("dropdown-content");
+				for (let i = 0; i < dropdowns.length; i++) {
+					const openDropdown = dropdowns[i];
+					if (openDropdown.style.display === "block") {
+						openDropdown.style.display = "none";
+					}
+				}
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***********************
+*   GOOGLE CHARTS CODE *
+***********************/
 
 google.charts.load("current", { packages: ["corechart"] })
 google.charts.setOnLoadCallback(drawChart)
@@ -73,7 +117,13 @@ function drawChart() {
 
 
 
-// COLOR SYMBOL 
+
+
+
+
+/***********************
+*      COLOR SYMBOL    *
+***********************/
 
 
   // Function to generate a random color in hexadecimal format
@@ -112,16 +162,17 @@ function drawChart() {
 
 
 
+/***********************
+*      DRAG AND DROP   *
+***********************/
 
-
-
-
+// DO NOT TOUCH
 
 // Tutorial: https://tahazsh.com/blog/seamless-ui-with-js-drag-to-reorder-example
 
-/***********************
- *      Variables       *
- ***********************/
+/**
+ Variables
+ **/
 
 let listContainer
 
@@ -136,9 +187,9 @@ let items = []
 
 let prevRect = {}
 
-/***********************
- *    Helper Functions   *
- ***********************/
+/**
+Helper Functions
+**/
 
 function getAllItems() {
   if (!items?.length) {
@@ -159,9 +210,9 @@ function isItemToggled(item) {
   return item.hasAttribute('data-is-toggled')
 }
 
-/***********************
- *        Setup        *
- ***********************/
+/**
+Setup
+**/
 
 function setup() {
   listContainer = document.querySelector('.js-list')
@@ -175,9 +226,9 @@ function setup() {
   document.addEventListener('touchend', dragEnd)
 }
 
-/***********************
- *     Drag Start      *
- ***********************/
+/**
+Drag Start
+**/
 
 function dragStart(e) {
   if (e.target.classList.contains('js-drag-handle')) {
@@ -233,9 +284,9 @@ function initDraggableItem() {
   draggableItem.classList.add('is-draggable')
 }
 
-/***********************
- *        Drag         *
- ***********************/
+/**
+Drag
+**/
 
 function drag(e) {
   if (!draggableItem) return
@@ -289,9 +340,9 @@ function updateIdleItemsStateAndPosition() {
   })
 }
 
-/***********************
- *      Drag End       *
- ***********************/
+/**
+Drag End
+**/
  
  function dragEnd(e) {
   if (!draggableItem) return
@@ -377,8 +428,8 @@ function enablePageScroll() {
   document.body.style.userSelect = ''
 }
 
-/***********************
- *      Start Here     *
- ***********************/
+/**
+Start Here
+**/
 
 setup()
