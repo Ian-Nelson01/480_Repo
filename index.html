@@ -26,67 +26,77 @@
       <i class="fa fa-search"></i>
     </button>
     </div>
-    <div class="mainBlock">
-      <div class="list js-list">
-
-
-
-  
-      <!-- spot where dropdown drops down -->
-  <div id="myDropdown" class="dropdown-content">
-    <a href="#">Option 1</a>
-    <a href="#">Option 2</a>
-    <a href="#">Option 3</a>
-          <div class="list__item is-idle js-item">
-        <div class="symbol">YAO</div>
-        <div class="stonk">60.11 +1.03(+11.2%)</div>
-        <script
-          type="text/javascript"
-          src="https://www.gstatic.com/charts/loader.js"
-        ></script>
-        <div
-          class="chart"
-          id="chart_div4"
-          style="width: 250; height: 5px"
-        ></div>
-        <div class="drag-handle js-drag-handle"></div>
-      </div>
-  </div>
     
+          <!-- spot where dropdown drops down -->
+  <div id="myDropdown" class="dropdown-content">
+   
+    <div class="search-suggest" >
+     <button id="addElementBtn">Add Element</button>
+          <div class = "suggest-symbol">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="list__item is-idle js-item">
-          <div class = "symbol">
-
-            LNK   
+            DGI   
           </div>
           <div class = "stonk">
-            81.05 +2.44(+3.33%)
+            75.59 +0.82(+1.19%)
+          </div>
+         
+         
+            
+          
+      
+    </div>
+           <div class="list__item is-idle js-item">
+         
+       
+          <div class = "symbol">
+
+            DGI   
+          </div>
+          <div class = "stonk">
+            75.59 +0.82(+1.19%)
           </div>
           <script
               type="text/javascript"
               src="https://www.gstatic.com/charts/loader.js"
               ></script>
-          <div class="chart" id="chart_div1"></div>
+          <div
+              class="chart"
+              id="chart_div2"
+              style="width: 25%; height: 50px"
+              ></div>
           <div class="drag-handle js-drag-handle"></div>
-        </div>
+        </div>   
+ 
+    </div>
+    <div class="mainBlock">
+      <div id="container"  class="list js-list">
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
         <!-- Stock -->
         <div class="list__item is-idle js-item">
+         
+       
           <div class = "symbol">
 
             DGI   
@@ -119,6 +129,20 @@
               ></div>
           <div class="drag-handle js-drag-handle"></div>
         </div>
+         <div class="list__item is-idle js-item">
+          <div class="symbol">ABSE</div>
+          <div class="stonk">24.92 +0.72(+2.33%)</div>
+          <script
+              type="text/javascript"
+              src="https://www.gstatic.com/charts/loader.js"
+              ></script>
+          <div
+              class="chart"
+              id="chart_div5"
+              style="width: 25%; height: 50px"
+              ></div>
+          <div class="drag-handle js-drag-handle"></div>
+        </div>
       </div>
     </div>
     <!-- DEBUG -->  
@@ -136,6 +160,13 @@
       }
     </script>
     <script src="./home-view.js"></script>
+  
+   
+   
+
+  
+    <button id="removeElementBtn">Remove Element</button>
+
   </body>
 </html>
 
