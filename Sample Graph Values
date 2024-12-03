@@ -1,0 +1,110 @@
+  var data0 = google.visualization.arrayToDataTable([
+    ["Year", "Sales"],
+    ["2013", 50],
+    ["2014", 50],
+    ["2015", 50],
+    ["2016", 50],
+  ])
+
+  var options = {
+    title: "Company Performance",
+    hAxis: { title: "Year", titleTextStyle: { color: "#0196b1" } },
+    vAxis: { minValue: 0 },
+    colors: ["green"],
+    legend: { position: "none" },
+    tooltip: { isHtml: false, trigger: "none" }, // Disable tooltip
+  }
+
+  var data1 = google.visualization.arrayToDataTable([
+    ["Year", "Sales"],
+    ["2013", 50],
+    ["2014", 50],
+    ["2015", 50],
+    ["2016", 500],
+  ])
+
+  var data2 = google.visualization.arrayToDataTable([
+    ["Year", "Sales"],
+    ["2013", 50],
+    ["2014", 50],
+    ["2015", 500],
+    ["2016", 50],
+  ])
+
+  var data3 = google.visualization.arrayToDataTable([
+    ["Year", "Sales"],
+    ["2013", 50],
+    ["2014", 50],
+    ["2015", 500],
+    ["2016", 500],
+  ])
+
+  var data4 = google.visualization.arrayToDataTable([
+    ["Year", "Sales"],
+    ["2013", 50],
+    ["2014", 500],
+    ["2015", 50],
+    ["2016", 50],
+  ])
+
+  var data5 = google.visualization.arrayToDataTable([
+    ["Year", "Sales"],
+    ["2013", 50],
+    ["2014", 500],
+    ["2015", 50],
+    ["2016", 500],
+  ])
+
+  var data6 = google.visualization.arrayToDataTable([
+    ["Year", "Sales"],
+    ["2013", 50],
+    ["2014", 500],
+    ["2015", 500],
+    ["2016", 50],
+  ])
+
+  var data7 = google.visualization.arrayToDataTable([
+    ["Year", "Sales"],
+    ["2013", 50],
+    ["2014", 500],
+    ["2015", 500],
+    ["2016", 500],
+  ])
+
+  var data8 = google.visualization.arrayToDataTable([
+    ["Year", "Sales"],
+    ["2013", 500],
+    ["2014", 50],
+    ["2015", 50],
+    ["2016", 50],
+  ])
+
+  var data9 = google.visualization.arrayToDataTable([
+    ["Year", "Sales"],
+    ["2013", 500],
+    ["2014", 50],
+    ["2015", 50],
+    ["2016", 500],
+  ])
+
+  var data10 = google.visualization.arrayToDataTable([
+    ["Year", "Sales"],
+    ["2013", 500],
+    ["2014", 50],
+    ["2015", 500],
+    ["2016", 50],
+  ])
+
+  var datas = [
+    data0,
+    data1,
+    data2,
+    data3,
+    data4,
+    data5,
+    data6,
+    data7,
+    data8,
+    data9,
+    data10
+  ]
