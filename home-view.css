@@ -7,6 +7,46 @@ body{
 
 
 
+.search-suggest {
+
+width: 100%;
+  background: white;
+  
+  padding-left: 40px;
+  height: 50px;
+  border-radius: 25px;
+  color: #001d29;
+  font-weight: 500;
+  font-size: 18px;
+  box-shadow: 0 4px 6px -1px #001d2910, 0 2px 4px -2px #001d2910;
+  
+  display: flex;
+  align-items: center;
+  position: relative;
+  will-change: transform;
+}
+.suggest-symbol{
+  display: flex;
+  
+}
+.addElementBtn{
+  position: absolute;
+  height: 440px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -30,7 +70,6 @@ dropdown css
 
 		.dropdown-content {
 			display: none;
-			
 			background-color: #f9f9f9;
 			min-width: 160px;
 			box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -59,8 +98,10 @@ dropdown css
 
 .SearchDiv{
   position: relative;
+  
 }
 .search_field{
+  
   width: 500px;
   background: white;
   padding-left:1.3em;
@@ -119,6 +160,7 @@ dropdown css
   font-size: 17px;
   border: none;
   cursor: pointer;
+  
 }
 
 .topnav .search-container button:hover {
@@ -164,7 +206,7 @@ dropdown css
 
 width: 100%;
   background: white;
-  padding: 1px;
+  
   padding-left: 40px;
   height: 50px;
   border-radius: 25px;
@@ -178,7 +220,12 @@ width: 100%;
   position: relative;
   will-change: transform;
 }
-
+#chart_div5{
+  visibility: hidden;
+}
+#list__item is-idle js-item{
+  
+}
 .symbol{
   
   position: absolute;
