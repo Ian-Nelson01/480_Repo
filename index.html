@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>STOCKS, HOMEPAGE</title>
     <link rel="stylesheet" href="./home-view.css">
+
   </head>
 
   <header>
@@ -93,21 +94,20 @@
         </div>
       </div>
     </div>
-    <!-- DEBUG -->  
-    <script>
-      try {
-        localStorage.setItem("testKey", "testValue")
-        if (localStorage.getItem("testKey") == "testValue") {
-          console.log("Local Store working")
-          console.log(localStorage)
-        }
-
-      } catch (error) {
-        console.log(error)
-        alert("Cookie Storage Error:\n" + error.toString())
-      }
-    </script>
+    
     <script src="./home-view.js"></script>
+    <script type="module">
+      import {permissions_test } from "./modules/local-store.js"
+      import {fillAllRows} from "./modules/home_control.js"
+      
+      permissions_test()
+      
+      const testData = ["SOMETHING", "ELSE", "ANOTHER", "NUM4"]
+
+      fillAllRows(testData)
+
+    </script>
+  
   </body>
 </html>
 
