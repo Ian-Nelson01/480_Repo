@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>STOCKS, HOMEPAGE</title>
     <link rel="stylesheet" href="./home-view.css">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=rocket_launch" />
   </head>
 
   <header>
@@ -29,9 +30,11 @@
     
           <!-- spot where dropdown drops down -->
   <div id="myDropdown" class="dropdown-content">
-   
-    <div class="search-suggest" >
-     <button id="addElementBtn">Add Element</button>
+      <div id="myResult" class="search-suggest">
+        <span id="rocket" class="material-symbols-outlined">
+rocket_launch
+</span>
+     
           <div class = "suggest-symbol">
 
             DGI   
@@ -45,31 +48,13 @@
           
       
     </div>
-           <div class="list__item is-idle js-item">
-         
-       
-          <div class = "symbol">
-
-            DGI   
-          </div>
-          <div class = "stonk">
-            75.59 +0.82(+1.19%)
-          </div>
-          <script
-              type="text/javascript"
-              src="https://www.gstatic.com/charts/loader.js"
-              ></script>
-          <div
-              class="chart"
-              id="chart_div2"
-              style="width: 25%; height: 50px"
-              ></div>
-          <div class="drag-handle js-drag-handle"></div>
-        </div>   
+        
  
     </div>
     <div class="mainBlock">
+  
       <div id="container"  class="list js-list">
+      
 
 
 
@@ -95,7 +80,7 @@
  
         <!-- Stock -->
         <div class="list__item is-idle js-item">
-         
+
        
           <div class = "symbol">
 
@@ -142,9 +127,11 @@
               style="width: 25%; height: 50px"
               ></div>
           <div class="drag-handle js-drag-handle"></div>
+       
         </div>
       </div>
     </div>
+      <div id = "growBox"class="growBox">
     <!-- DEBUG -->  
     <script>
       try {
@@ -166,8 +153,7 @@
 
   
     <button id="removeElementBtn">Remove Element</button>
+    <button id="addElementBtn">Add Element</button>
 
   </body>
-</html>
-
 </html>
