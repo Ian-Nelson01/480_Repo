@@ -25,9 +25,17 @@ var text1 = [
   ["TEN", "10.10 +1.10(+1.10%)"]
 ]
 
+//const addButton = document.getElementById("addElementBtn")
+//const container = document.getElementById("container")
+
+document.addEventListener('DOMContentLoaded', function () {
+
 const addButton = document.getElementById("addElementBtn")
 const container = document.getElementById("container")
+// Add event listener to the 'Add Element' button
+addButton.addEventListener("click", addListItem)
 
+});
 
 
 
@@ -157,7 +165,7 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 // Add event listener to the 'Add Element' button
-addButton.addEventListener("click", addListItem)
+//addButton.addEventListener("click", addListItem)
 
 /***********************
  *   GOOGLE CHARTS CODE *
