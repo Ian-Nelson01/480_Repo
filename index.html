@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>STOCKS, HOMEPAGE</title>
     <link rel="stylesheet" href="./home-view.css">
-     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=rocket_launch" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=rocket_launch" />
   </head>
 
   <header>
@@ -17,71 +17,42 @@
   <body>
     <div class="SearchDiv">
       <input
-          class="search_field"
-          type="text"
-          placeholder="Search.."
-          name="search"
-          />
-       <button onclick="toggleDropdown()" class="submit_button" type="submit">
-      🔎︎
-      <i class="fa fa-search"></i>
-    </button>
+        class="search_field"
+        type="text"
+        placeholder="Search.."
+        name="search"
+      />
+      <button onclick="toggleDropdown()" class="submit_button" type="submit">
+        🔎︎
+        <i class="fa fa-search"></i>
+      </button>
     </div>
     
-          <!-- spot where dropdown drops down -->
-  <div id="myDropdown" class="dropdown-content">
+    <!-- spot where dropdown drops down -->
+    <div id="myDropdown" class="dropdown-content">
       <div id="myResult" class="search-suggest">
         <span id="rocket" class="material-symbols-outlined">
-rocket_launch
-</span>
-     
-          <div class = "suggest-symbol">
+          rocket_launch
+        </span>
 
-            DGI   
-          </div>
-          <div class = "stonk">
-            75.59 +0.82(+1.19%)
-          </div>
-         
-         
-            
-          
-      
-    </div>
-        
- 
+        <div class = "suggest-symbol">
+
+          DGI
+        </div>
+        <div class = "stonk">
+          75.59 +0.82(+1.19%)
+        </div>
+
+      </div>
+
     </div>
     <div class="mainBlock">
-  
+
       <div id="container"  class="list js-list">
-      
 
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
         <!-- Stock -->
         <div class="list__item is-idle js-item">
 
-       
           <div class = "symbol">
 
             DGI   
@@ -90,70 +61,63 @@ rocket_launch
             75.59 +0.82(+1.19%)
           </div>
           <script
-              type="text/javascript"
-              src="https://www.gstatic.com/charts/loader.js"
-              ></script>
+            type="text/javascript"
+            src="https://www.gstatic.com/charts/loader.js"
+          ></script>
           <div
-              class="chart"
-              id="chart_div2"
-              style="width: 25%; height: 50px"
-              ></div>
+            class="chart"
+            id="chart_div2"
+            style="width: 25%; height: 50px"
+          ></div>
           <div class="drag-handle js-drag-handle"></div>
         </div>
         <div class="list__item is-idle js-item">
           <div class="symbol">ABSS</div>
           <div class="stonk">24.92 +0.72(+2.33%)</div>
           <script
-              type="text/javascript"
-              src="https://www.gstatic.com/charts/loader.js"
-              ></script>
+            type="text/javascript"
+            src="https://www.gstatic.com/charts/loader.js"
+          ></script>
           <div
-              class="chart"
-              id="chart_div3"
-              style="width: 25%; height: 50px"
-              ></div>
+            class="chart"
+            id="chart_div3"
+            style="width: 25%; height: 50px"
+          ></div>
           <div class="drag-handle js-drag-handle"></div>
         </div>
-         <div class="list__item is-idle js-item">
+        <div class="list__item is-idle js-item">
           <div class="symbol">ABSE</div>
           <div class="stonk">24.92 +0.72(+2.33%)</div>
           <script
-              type="text/javascript"
-              src="https://www.gstatic.com/charts/loader.js"
-              ></script>
+            type="text/javascript"
+            src="https://www.gstatic.com/charts/loader.js"
+          ></script>
           <div
-              class="chart"
-              id="chart_div5"
-              style="width: 25%; height: 50px"
-              ></div>
+            class="chart"
+            id="chart_div5"
+            style="width: 25%; height: 50px"
+          ></div>
           <div class="drag-handle js-drag-handle"></div>
-       
+
         </div>
       </div>
     </div>
-      <div id = "growBox"class="growBox">
-    <!-- DEBUG -->  
-    <script>
-      try {
-        localStorage.setItem("testKey", "testValue")
-        if (localStorage.getItem("testKey") == "testValue") {
-          console.log("Local Store working")
-          console.log(localStorage)
-        }
+    <div id = "growBox"class="growBox">
+      <script src="./home-view.js"></script>
 
-      } catch (error) {
-        console.log(error)
-        alert("Cookie Storage Error:\n" + error.toString())
-      }
-    </script>
-    <script src="./home-view.js"></script>
-  
-   
-   
+      <button id="removeElementBtn">Remove Element</button>
+      <button id="addElementBtn">Add Element</button>
 
-  
-    <button id="removeElementBtn">Remove Element</button>
-    <button id="addElementBtn">Add Element</button>
+      <script type="module">
+       import {permissions_test } from "./modules/local-store.js"
+       import {fillAllRows} from "./modules/home_control.js"
 
+       permissions_test()
+
+       const testData = ["SOMETHING", "ELSE", "ANOTHER", "NUM4"]
+
+       //fillAllRows(testData)
+
+      </script>
   </body>
 </html>
