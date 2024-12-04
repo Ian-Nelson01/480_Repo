@@ -50,7 +50,7 @@
 
       <div id="container"  class="list js-list">
 
-        <!-- Stock -->
+        <!-- Stock<!--  --> -->
         <div class="list__item is-idle js-item">
 
           <div class = "symbol">
@@ -108,15 +108,23 @@
       <button id="removeElementBtn">Remove Element</button>
       <button id="addElementBtn">Add Element</button>
 
-      <script type="module">
+      <!-- I'm testing things here --Connor  -->
+      <script type="module" defer>
        import {permissions_test } from "./modules/local-store.js"
-       import {fillAllRows} from "./modules/home_control.js"
+       import {fillAllRows, updateStonkBySymbol} from "./modules/home_control.js"
 
        permissions_test()
 
-       const testData = ["SOMETHING", "ELSE", "ANOTHER", "NUM4"]
+       const testData = [
+         { symbol: "DGI", stonk: "05.59 +0.82(+1.19%)" },
+         { symbol: "STOCK2", stonk: "04.92 +0.72(+2.33%)" },
+         { symbol: "STOCK3", stonk: "04.92 +0.72(+2.33%)" },
+         { symbol: "STOCK4", stonk: "011.02 -1.50(-0.71%)" }, // Example new data
+       ];
 
-       //fillAllRows(testData)
+       fillAllRows(testData)
+
+       updateStonkBySymbol("DGI", "no money");
 
       </script>
   </body>
