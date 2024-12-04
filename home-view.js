@@ -28,46 +28,134 @@ var text1 = [
 const addButton = document.getElementById("addElementBtn")
 const container = document.getElementById("container")
 
+
+
+
+
+
+
+
+/******************
+add row
+*******************/
+
+
+
+
+
 // Function to create and add the new list item
-function addListItem() {
+async function addListItem() {
+
+//trigger growbox animation simultaniously
+ const growBox = document.getElementById("growBox"); 
+   
+ const stonkRow = document.getElementById("stonkRow"); 
+ 
+    // Reset the animation by removing the class first
+    growBox.classList.remove('animate');
+    
+    // Trigger a reflow to restart the animation
+    void growBox.offsetWidth; // This forces the browser to reflow
+    
+    // Add the animation class back
+    growBox.classList.add('animate');
+    
+   
+ 
+    
+ 
+ 
+  // Add a delay of 2 seconds using a Promise and async/await
+  await delay(500);  // Wait for 2 seconds
+// Add the animation class back
+    
+
+
   // Create the main div with class 'list__item is-idle js-item'
-  const newDiv = document.createElement("div")
-
-  newDiv.classList.add("list__item", "is-idle", "js-item")
-
+  const newDiv = document.createElement("div");
+  newDiv.classList.add("list__item", "is-idle", "js-item");
+	// give it an ID for seeking
+    newDiv.style.left = "-200px"; // X-position
+   
+    
   // Create the symbol div and add text
-  const symbolDiv = document.createElement("div")
-  symbolDiv.classList.add("symbol")
-  symbolDiv.textContent = text1[counter][0]
+  const symbolDiv = document.createElement("div");
+  symbolDiv.classList.add("symbol");
+  symbolDiv.textContent = text1[counter][0];
 
   // Create the stonk div and add text
-  const stonkDiv = document.createElement("div")
-  stonkDiv.classList.add("stonk")
-  stonkDiv.textContent = text1[counter][1]
+  const stonkDiv = document.createElement("div");
+  stonkDiv.classList.add("stonk");
+  stonkDiv.textContent = text1[counter][1];
 
   // Create the chart div with a unique ID
-  const chartDiv = document.createElement("div")
-  const chartId = "chart_div_" + new Date().getTime() // Unique ID using timestamp
-  chartDiv.classList.add("chart")
-  chartDiv.id = chartId
+  const chartDiv = document.createElement("div");
+  const chartId = "chart_div_" + new Date().getTime(); // Unique ID using timestamp
+  chartDiv.classList.add("chart");
+  chartDiv.id = chartId;
 
   // Create the drag handle div
-  const dragHandleDiv = document.createElement("div")
-  dragHandleDiv.classList.add("drag-handle", "js-drag-handle")
+  const dragHandleDiv = document.createElement("div");
+  dragHandleDiv.classList.add("drag-handle", "js-drag-handle");
 
   // Append all the created elements to the newDiv
-  newDiv.appendChild(symbolDiv)
-  newDiv.appendChild(stonkDiv)
-  newDiv.appendChild(chartDiv)
-  newDiv.appendChild(dragHandleDiv)
+  newDiv.appendChild(symbolDiv);
+  newDiv.appendChild(stonkDiv);
+  newDiv.appendChild(chartDiv);
+  newDiv.appendChild(dragHandleDiv);
 
   // Append the newDiv (list item) to the container
-  container.appendChild(newDiv)
+  container.appendChild(newDiv);
+
+
+
+
+
+
+
+
+    // Start position (x = -200px)
+    let currentX = -200;
+
+    // Interval function to animate the div
+    const interval = setInterval(() => {
+      // Increase the x position
+      currentX += 25;  // Move 5px per interval
+
+      // Set the new position
+      newDiv.style.left = currentX + "px";
+
+      // Stop the animation when it reaches x = 0
+      if (currentX >= 0) {
+        clearInterval(interval);  // Stop the animation
+      }
+    }, 20);  // 20ms per frame (50 frames per second)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // Call the drawChart function for the new chart div
-  google.charts.setOnLoadCallback(() => drawChart(chartId))
+  google.charts.setOnLoadCallback(() => drawChart(chartId));
+  
+  
 }
 
+
+// Delay function that returns a promise
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 // Add event listener to the 'Add Element' button
 addButton.addEventListener("click", addListItem)
 
@@ -92,6 +180,14 @@ function drawChart(chartId) {
     hAxis: { title: "Year", titleTextStyle: { color: "#0196b1" } },
     vAxis: { minValue: 0 },
     colors: ["green"],
+    legend: { position: "none" },
+    tooltip: { isHtml: false, trigger: "none" }, // Disable tooltip
+  }
+  var optionsR = {
+    title: "Company Performance",
+    hAxis: { title: "Year", titleTextStyle: { color: "#0196b1" } },
+    vAxis: { minValue: 0 },
+    colors: ["red"],
     legend: { position: "none" },
     tooltip: { isHtml: false, trigger: "none" }, // Disable tooltip
   }
@@ -187,11 +283,19 @@ function drawChart(chartId) {
     data7,
     data8,
     data9,
-    data10
-  ]
+    data10];
+  
+  
+  var log1 = datas[counter];
+ var valueNew = log1.getValue(3, 1);
+ 
+ var valueOld = log1.getValue(2, 1);
+  var value2 = log1.getValue(2, 1);
+  var value1 = log1.getValue(1, 1);
+   var value0 = log1.getValue(0, 1);
 
   //sloppy but functional switcher
-  if (counter != -1) {
+  if (valueNew >= valueOld) {
     // Create and draw the chart for the specific div using its ID
     var chart = new google.visualization.AreaChart(
       document.getElementById(chartId),
@@ -200,12 +304,15 @@ function drawChart(chartId) {
     
 
     counter = counter + 1
-  } else if (counter == -1) {
-    // Create and draw the chart for the specific div using its ID
-    var chart = new google.visualization.AreaChart(
+  }
+  else{
+  var chart = new google.visualization.AreaChart(
       document.getElementById(chartId),
     )
-    chart.draw(data2, options2)
+    chart.draw(datas[counter], optionsR)
+    
+
+    counter = counter + 1
   }
 }
 
@@ -214,6 +321,10 @@ function drawChart(chartId) {
  ***********************/
 // Function to toggle the dropdown visibility
 function toggleDropdown() {
+
+ const searchSuggest = document.getElementById("myResult");
+    searchSuggest.style.animationPlayState = "paused";
+
   const dropdownContent = document.getElementById("myDropdown")
   if (dropdownContent.style.display === "block") {
     dropdownContent.style.display = "none"
@@ -265,6 +376,84 @@ window.onload = function () {
   toggleDropdown() // Trigger the dropdown on page load
   toggleDropdown()
 }
+
+
+
+
+
+// CSS animation class (allows for box to grow on repeat)
+const styleSheet = document.styleSheets[0];
+styleSheet.insertRule(`
+    #growBox.animate {
+       animation: grow 0.51s ease-in-out backwards;
+    }
+`, styleSheet.cssRules.length);
+
+// Add the second rule (for example, changing the background color)
+styleSheet.insertRule(`
+    .list__item.animate {
+      animation: example 0.51s ease-in-out;
+    }
+`, styleSheet.cssRules.length);
+
+
+
+
+// Get the button element by its ID
+var rocket = document.getElementById("rocket");
+
+// Add an event listener for the 'click' event
+rocket.addEventListener("click", function() {
+addListItem();
+    // Get the element by its ID
+    const searchSuggest = document.getElementById("myResult");
+
+    // Set the animation play state to "running"
+   searchSuggest.style.animationPlayState = "running";
+    var rocket = document.getElementById("rocket");
+  // Add the 'clicked' class to start the animation
+            rocket.classList.add("clicked");
+
+            // After 0.85 seconds (animation duration), remove the 'clicked' class to allow hovering again
+            setTimeout(function() {
+                rocket.classList.remove("clicked");
+            }, 850);  // 850 milliseconds = 0.85 seconds
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***********************
  *      DRAG AND DROP   *
