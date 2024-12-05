@@ -113,7 +113,7 @@ async function addListItem() {
   container.appendChild(newDiv);
 
 
-
+applyRandomColorToElement(symbolDiv)
 
 
 
@@ -343,6 +343,19 @@ function applyRandomColors() {
     symbol.style.backgroundColor = randomColor // Apply the random color as background
   })
 }
+
+
+// Function to apply a random background color to a specific element
+function applyRandomColorToElement(element) {
+  const randomColor = getRandomColor(); // Generate a random color
+  element.style.backgroundColor = randomColor; // Apply the random color as background
+}
+
+
+
+
+
+
 
 window.onload = function () {
   applyRandomColors() // Call the random colors function
