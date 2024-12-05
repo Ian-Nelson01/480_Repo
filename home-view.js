@@ -30,15 +30,12 @@ var text1 = [
 
 document.addEventListener('DOMContentLoaded', function () {
 
-const addButton = document.getElementById("addElementBtn")
-const container = document.getElementById("container")
-// Add event listener to the 'Add Element' button
-addButton.addEventListener("click", addListItem)
+  const addButton = document.getElementById("addElementBtn")
+  const container = document.getElementById("container")
+  // Add event listener to the 'Add Element' button
+  addButton.addEventListener("click", addListItem)
 
 });
-
-
-
 
 
 
@@ -48,44 +45,41 @@ add row
 *******************/
 
 
-
-
-
 // Function to create and add the new list item
 async function addListItem() {
 
-//trigger growbox animation simultaniously
- const growBox = document.getElementById("growBox"); 
-   
- const stonkRow = document.getElementById("stonkRow"); 
- 
-    // Reset the animation by removing the class first
-    growBox.classList.remove('animate');
-    
-    // Trigger a reflow to restart the animation
-    void growBox.offsetWidth; // This forces the browser to reflow
-    
-    // Add the animation class back
-    growBox.classList.add('animate');
-    
-   
- 
-    
- 
- 
+  //trigger growbox animation simultaniously
+  const growBox = document.getElementById("growBox");
+
+  const stonkRow = document.getElementById("stonkRow");
+
+  // Reset the animation by removing the class first
+  growBox.classList.remove('animate');
+
+  // Trigger a reflow to restart the animation
+  void growBox.offsetWidth; // This forces the browser to reflow
+
+  // Add the animation class back
+  growBox.classList.add('animate');
+
+
+
+
+
+
   // Add a delay of 2 seconds using a Promise and async/await
   await delay(500);  // Wait for 2 seconds
-// Add the animation class back
-    
+  // Add the animation class back
+
 
 
   // Create the main div with class 'list__item is-idle js-item'
   const newDiv = document.createElement("div");
   newDiv.classList.add("list__item", "is-idle", "js-item");
 	// give it an ID for seeking
-    newDiv.style.left = "-200px"; // X-position
-   
-    
+  newDiv.style.left = "-200px"; // X-position
+
+
   // Create the symbol div and add text
   const symbolDiv = document.createElement("div");
   symbolDiv.classList.add("symbol");
@@ -115,29 +109,22 @@ async function addListItem() {
   // Append the newDiv (list item) to the container
   container.appendChild(newDiv);
 
+  // Start position (x = -200px)
+  let currentX = -200;
 
+  // Interval function to animate the div
+  const interval = setInterval(() => {
+    // Increase the x position
+    currentX += 25;  // Move 5px per interval
 
+    // Set the new position
+    newDiv.style.left = currentX + "px";
 
-
-
-
-
-    // Start position (x = -200px)
-    let currentX = -200;
-
-    // Interval function to animate the div
-    const interval = setInterval(() => {
-      // Increase the x position
-      currentX += 25;  // Move 5px per interval
-
-      // Set the new position
-      newDiv.style.left = currentX + "px";
-
-      // Stop the animation when it reaches x = 0
-      if (currentX >= 0) {
-        clearInterval(interval);  // Stop the animation
-      }
-    }, 20);  // 20ms per frame (50 frames per second)
+    // Stop the animation when it reaches x = 0
+    if (currentX >= 0) {
+      clearInterval(interval);  // Stop the animation
+    }
+  }, 20);  // 20ms per frame (50 frames per second)
 
 
 
@@ -295,12 +282,12 @@ function drawChart(chartId) {
   
   
   var log1 = datas[counter];
- var valueNew = log1.getValue(3, 1);
- 
- var valueOld = log1.getValue(2, 1);
+  var valueNew = log1.getValue(3, 1);
+
+  var valueOld = log1.getValue(2, 1);
   var value2 = log1.getValue(2, 1);
   var value1 = log1.getValue(1, 1);
-   var value0 = log1.getValue(0, 1);
+  var value0 = log1.getValue(0, 1);
 
   //sloppy but functional switcher
   if (valueNew >= valueOld) {
@@ -314,7 +301,7 @@ function drawChart(chartId) {
     counter = counter + 1
   }
   else{
-  var chart = new google.visualization.AreaChart(
+    var chart = new google.visualization.AreaChart(
       document.getElementById(chartId),
     )
     chart.draw(datas[counter], optionsR)
@@ -330,8 +317,8 @@ function drawChart(chartId) {
 // Function to toggle the dropdown visibility
 function toggleDropdown() {
 
- const searchSuggest = document.getElementById("myResult");
-    searchSuggest.style.animationPlayState = "paused";
+  const searchSuggest = document.getElementById("myResult");
+  searchSuggest.style.animationPlayState = "paused";
 
   const dropdownContent = document.getElementById("myDropdown")
   if (dropdownContent.style.display === "block") {
@@ -349,7 +336,7 @@ window.onclick = function (event) {
   // Check if the click was outside the dropdown and the submit button
   if (
     !submitButton.contains(event.target) &&
-    !dropdownContent.contains(event.target)
+      !dropdownContent.contains(event.target)
   ) {
     dropdownContent.style.display = "none"
   }
@@ -412,21 +399,21 @@ var rocket = document.getElementById("rocket");
 
 // Add an event listener for the 'click' event
 rocket.addEventListener("click", function() {
-addListItem();
-    // Get the element by its ID
-    const searchSuggest = document.getElementById("myResult");
+  addListItem();
+  // Get the element by its ID
+  const searchSuggest = document.getElementById("myResult");
 
-    // Set the animation play state to "running"
-   searchSuggest.style.animationPlayState = "running";
-    var rocket = document.getElementById("rocket");
+  // Set the animation play state to "running"
+  searchSuggest.style.animationPlayState = "running";
+  var rocket = document.getElementById("rocket");
   // Add the 'clicked' class to start the animation
-            rocket.classList.add("clicked");
+  rocket.classList.add("clicked");
 
-            // After 0.85 seconds (animation duration), remove the 'clicked' class to allow hovering again
-            setTimeout(function() {
-                rocket.classList.remove("clicked");
-            }, 850);  // 850 milliseconds = 0.85 seconds
-        });
+  // After 0.85 seconds (animation duration), remove the 'clicked' class to allow hovering again
+  setTimeout(function() {
+    rocket.classList.remove("clicked");
+  }, 850);  // 850 milliseconds = 0.85 seconds
+});
 
 
 
@@ -472,8 +459,8 @@ addListItem();
 // Tutorial: https://tahazsh.com/blog/seamless-ui-with-js-drag-to-reorder-example
 
 /**
- Variables
- **/
+   Variables
+**/
 
 let listContainer
 
@@ -489,7 +476,7 @@ let items = []
 let prevRect = {}
 
 /**
-Helper Functions
+   Helper Functions
 **/
 
 function getAllItems() {
@@ -512,7 +499,7 @@ function isItemToggled(item) {
 }
 
 /**
-Setup
+   Setup
 **/
 
 function setup() {
@@ -528,7 +515,7 @@ function setup() {
 }
 
 /**
-Drag Start
+   Drag Start
 **/
 
 function dragStart(e) {
@@ -586,7 +573,7 @@ function initDraggableItem() {
 }
 
 /**
-Drag
+   Drag
 **/
 
 function drag(e) {
@@ -642,7 +629,7 @@ function updateIdleItemsStateAndPosition() {
 }
 
 /**
-Drag End
+   Drag End
 **/
 
 function dragEnd(e) {
@@ -777,7 +764,7 @@ function simulateDragAndDrop() {
 }
 
 /**
-Start Here
+   Start Here
 **/
 
 setup()

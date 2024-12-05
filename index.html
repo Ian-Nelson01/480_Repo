@@ -112,19 +112,27 @@
       <script type="module" defer>
        import {permissions_test } from "./modules/local-store.js"
        import {fillAllRows, updateStonkBySymbol} from "./modules/home_control.js"
+       import {query_realtime,
+               query_intraday
+       } from "./modules/interface.js"
 
        permissions_test()
 
        const testData = [
          { symbol: "DGI", stonk: "05.59 +0.82(+1.19%)" },
-         { symbol: "STOCK2", stonk: "04.92 +0.72(+2.33%)" },
-         { symbol: "STOCK3", stonk: "04.92 +0.72(+2.33%)" },
-         { symbol: "STOCK4", stonk: "011.02 -1.50(-0.71%)" }, // Example new data
+         { symbol: "Stk2", stonk: "04.92 +0.72(+2.33%)" },
+         { symbol: "Stk3", stonk: "04.92 +0.72(+2.33%)" },
+         { symbol: "Stk4", stonk: "011.02 -1.50(-0.71%)" }, // Example new data
        ];
 
        fillAllRows(testData)
 
        updateStonkBySymbol("DGI", "no money");
+
+       //var stocks = ["DHC","DFS", "CBLL"]
+       //query_realtime(stocks)
+
+       query_intraday("AAPL", 2)
 
       </script>
   </body>
