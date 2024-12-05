@@ -22,6 +22,16 @@
       type="text/javascript"
       src="https://www.gstatic.com/charts/loader.js"
     ></script>
+    <div class="timelineButtons">
+      <input type="button" value="1D" onclick="markPressed(this)" class="pressed">
+      <input type="button" value="5D" onclick="markPressed(this)">
+      <input type="button" value="1M" onclick="markPressed(this)">
+      <input type="button" value="6M" onclick="markPressed(this)">
+      <input type="button" value="YTD" onclick="markPressed(this)">
+      <input type="button" value="1Y" onclick="markPressed(this)">
+      <input type="button" value="5Y" onclick="markPressed(this)">
+      <input type="button" value="ALL" onclick="markPressed(this)">
+    </div>
     <div id="chart_div" style="width: 100%; height: 400px"></div>
 
     <table>
