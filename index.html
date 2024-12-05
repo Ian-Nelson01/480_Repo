@@ -118,7 +118,9 @@
        import {permissions_test } from "./modules/local-store.js"
        import {fillAllRows, updateStonkBySymbol} from "./modules/home_control.js"
        import {query_realtime,
-               query_intraday
+               query_intraday,
+               query_daily,
+               query_monthly
        } from "./modules/interface.js"
 
        permissions_test()
@@ -137,7 +139,28 @@
        //var stocks = ["DHC","DFS", "CBLL"]
        //query_realtime(stocks)
 
-       query_intraday("AAPL", 2)
+       //const apple = query_intraday("AAPL", 2)
+       //console.log(apple)
+
+       // I hate promises
+       query_intraday("AAPL", 3).then((result) => {
+         console.log(result); // Logs the resolved object
+       }).catch((error) => {
+         console.error("Error:", error);
+       });
+
+        query_daily("IBM").then((result) => {
+         console.log(result); // Logs the resolved object
+       }).catch((error) => {
+         console.error("Error:", error);
+       });
+
+       query_monthly("DFS").then((result) => {
+         console.log(result); // Logs the resolved object
+       }).catch((error) => {
+         console.error("Error:", error);
+       });
+
 
       </script>
   </body>
