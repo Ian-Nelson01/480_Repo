@@ -348,7 +348,8 @@ function applyRandomColors() {
 // Function to apply a random background color to a specific element
 function applyRandomColorToElement(element) {
   const randomColor = getRandomColor(); // Generate a random color
-  element.style.backgroundColor = randomColor; // Apply the random color as background
+  symbol.style.backgroundColor = "#000000" // Apply the random color as background
+    symbol.style.borderColor = randomColor // Apply the random color as background
 }
 
 
