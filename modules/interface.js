@@ -4,48 +4,72 @@
 // --Connor
 
 
-export async function query_realtime(symbols) {
+// Rewritten with 'Quote Endpoint' API because premium ones aren't working
 
-    var cleaned_symbols = symbols.join(',')
-    var key = get_key()
-    var url = `https://www.alphavantage.co/query?function=REALTIME_BULK_QUOTES&symbol=${cleaned_symbols}&apikey=${key}`
+export async function query_endpoint(symbol) {
+    const key = get_key()
+    const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${key}`
 
     console.log(url)
-    fetch(url)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`)
-            }
-            return response.json() // Parse the JSON data
-        })
-        .then((data) => {
-            // Successfully received data
-            console.log("Response Data:", data)
 
-            // PROCESS THE DATA HERE ---------------------
-            if (data.data && Array.isArray(data.data)) {
-                data.data.forEach((stock) => {
-                    const sym             = stock.symbol
-                    const time            = stock.tiemstamp
-                    const open            = stock.open
-                    const high            = stock.high
-                    const low             = stock.low
-                    const close           = stock.close
-                    const prev_close      = stock.previous_close
-                    const change          = stock.change_percent
+    try {
+        const response = await fetch(url)
 
-                    console.log(`Symbol: ${sym}`)
-                    console.log(`Close Price: ${close}`)
-                })
-            } else {
-                console.warn("No stock data found in the response.")
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+
+        const data = await response.json()
+
+        if (data["Global Quote"]) {
+            const stockData = data["Global Quote"]
+
+            const symbol = stockData["01. symbol"]
+            const open = stockData["02. open"]
+            const high = stockData["03. high"]
+            const low = stockData["04. low"]
+            const price = stockData["05. price"]
+            const volume = stockData["06. volume"]
+            const latestTradingDay = stockData["07. latest trading day"]
+            const previousClose = stockData["08. previous close"]
+            const change = stockData["09. change"]
+            const changePercent = stockData["10. change percent"]
+
+            // 
+            console.log(`Symbol: ${symbol}`)
+            console.log(`Open: ${open}`)
+            console.log(`High: ${high}`)
+            console.log(`Low: ${low}`)
+            console.log(`Price: ${price}`)
+            console.log(`Volume: ${volume}`)
+            console.log(`Latest Trading Day: ${latestTradingDay}`)
+            console.log(`Previous Close: ${previousClose}`)
+            console.log(`Change: ${change}`)
+            console.log(`Change Percent: ${changePercent}`)
+
+            return {
+                symbol,
+                open,
+                high,
+                low,
+                price,
+                volume,
+                latestTradingDay,
+                previousClose,
+                change,
+                changePercent
             }
-        })
-        .catch((error) => {
-            // Handle errors
-            console.error("Error fetching data:", error)
-        })
+        } else {
+            console.warn("No stock data found in response.")
+            return null
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error)
+        return null
+    }
 }
+
+
 
 // Symbol is what you expect
 // minutes is the last n minutes of trading to pull data for
