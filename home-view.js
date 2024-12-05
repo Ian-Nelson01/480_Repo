@@ -100,14 +100,32 @@ async function addListItem() {
   const dragHandleDiv = document.createElement("div");
   dragHandleDiv.classList.add("drag-handle", "js-drag-handle");
 
+// Create the drag handle div
+  const xHandleDiv = document.createElement("div");
+  xHandleDiv.classList.add("x-handle");
+  xHandleDiv.textContent = '×'; // Add the "×" symbol
+
+
+// Add event listener to remove the item when 'x' is clicked
+  xHandleDiv.addEventListener("click", () => {
+    newDiv.remove(); // Remove the list item when 'x' is clicked
+  });
+  
+  
   // Append all the created elements to the newDiv
   newDiv.appendChild(symbolDiv);
   newDiv.appendChild(stonkDiv);
   newDiv.appendChild(chartDiv);
   newDiv.appendChild(dragHandleDiv);
+  newDiv.appendChild(xHandleDiv);
 
   // Append the newDiv (list item) to the container
   container.appendChild(newDiv);
+
+
+
+
+
 
   // Start position (x = -200px)
   let currentX = -200;
