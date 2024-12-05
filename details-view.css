@@ -41,6 +41,29 @@ td {
     overflow: visible;
 }
 
+input[type="button"] {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0; 
+  cursor: pointer;
+}
+
+input[type="button"].pressed {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #0056b3;
+}
+
+input[type="button"]:hover {
+  background-color: #e0e0e0; /* Optional: Change background on hover */
+}
+
 body{
   /*I need to figure out how to apply numeric values to a gradient, but this works i guess*/
   background-image: linear-gradient(lightgray, white, white, white, white, white, white, white, white, white, white, white, white);
