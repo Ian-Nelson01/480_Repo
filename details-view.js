@@ -184,7 +184,7 @@ function drawChart() {
   var options = {
     title: "Company Performance",
     hAxis: { 
-      title: "Year", 
+      title: getButtonTitle(getPressedButton()), 
       titleTextStyle: { color: "#0196b1" }, 
       slantedText: true,
     },
