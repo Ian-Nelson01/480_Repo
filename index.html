@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -9,11 +10,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=rocket_launch" />
   </head>
 
+<!-- Page heading with decorative line-->
   <header>
     <h2>Nathan's Stocks</h2>
     <hr width="100%" size="2" color="#0196b1" noshade />
   </header>
-
+  
+<!--search bar-->
   <body>
     <div class="SearchDiv">
       <input
@@ -23,18 +26,22 @@
         name="search"
       />
       
+      <!-- script for dropdown box that decends from search bar-->
       <script>
       
 
 /***********************
  *   SEARCH DROPDOWN    *
  ***********************/
-// Function to toggle the dropdown visibility
+// Function to toggle the dropdown menu from the searchbar
 function toggleDropdown() {
-
+    
+  //uses the change in dropdown toggle to sneakily reset the rocket animation
   const searchSuggest = document.getElementById("myResult");
   searchSuggest.style.animationPlayState = "paused";
 
+// check if the dropdown box is visible or not via the display property.
+// set visibility to opposite of current visibility.
   const dropdownContent = document.getElementById("myDropdown")
   if (dropdownContent.style.display === "block") {
     dropdownContent.style.display = "none"
@@ -43,20 +50,21 @@ function toggleDropdown() {
   }
 }
 
-
+// temp event listner for temp add stock button. Im scared to delete it.
 document.addEventListener('DOMContentLoaded', function () {
-
   const addButton = document.getElementById("addElementBtn")
   const container = document.getElementById("container")
   // Add event listener to the 'Add Element' button
   addButton.addEventListener("click", addListItem)
-
 });
 
 
 
-// Event listener to close the dropdown if clicking outside
+// Event listener to close the dropdown if clicking outside 
+// i dont like it staying open
 window.onclick = function (event) {
+
+    // get elements
   const dropdownContent = document.getElementById("myDropdown")
   const submitButton = document.querySelector(".submit_button")
 
@@ -65,11 +73,13 @@ window.onclick = function (event) {
     !submitButton.contains(event.target) &&
       !dropdownContent.contains(event.target)
   ) {
+      // hide dropdown
     dropdownContent.style.display = "none"
   }
 }
 
       </script>
+      <!--button to display dropdown box, looks like magnifying glass-->
       <button onclick="toggleDropdown()" class="submit_button" type="submit">
         🔎︎
         <i class="fa fa-search"></i>
@@ -78,89 +88,109 @@ window.onclick = function (event) {
     
     <!-- spot where dropdown drops down -->
     <div id="myDropdown" class="dropdown-content">
+    <!--preview row displaying stock user searched for-->
       <div id="myResult" class="search-suggest">
+      <!-- button to add previes to stock list. its a rocket ship!-->
         <span id="rocket" class="material-symbols-outlined">
           rocket_launch
         </span>
-
+        <!-- Stock symbol in preview -->
         <div class = "suggest-symbol">
-
           DGI
         </div>
+         <!-- stock info in preview -->
         <div class = "stonk">
           75.59 +0.82(+1.19%)
         </div>
-
       </div>
-
     </div>
     
-    
+     <!-- temp button link to details page. need to apply to stocks -->
     <form action="details-view.html">
         <input type="submit" value="Go to Another Page">
     </form>
+    
+     <!-- blue box the list is in -->
+      <!-- this is not actually the lists container, just a decoration -->
     <div class="mainBlock">
 
+      <!-- list container, utilizes dropdown library for fun moving around -->
       <div id="container"  class="list js-list">
 
-        <!-- Stock<!--  --> -->
+         <!-- Temporary stocks to populate page -->
         <div class="list__item is-idle js-item">
-
-          <div class = "symbol">
-
-            DGI   
-          </div>
+          <!-- stock symbol -->
+          <div class = "symbol">DGI</div>
+          <!-- stock info -->
           <div class = "stonk">
             75.59 +0.82(+1.19%)
           </div>
+          <!-- js script for mini chart -->
           <script
             type="text/javascript"
             src="https://www.gstatic.com/charts/loader.js"
           ></script>
+          <!-- mini chart -->
           <div
             class="chart"
             id="chart_div2"
             style="width: 25%; height: 50px"
           ></div>
+          <!-- drag and drop handle     6 dots -->
           <div class="drag-handle js-drag-handle"></div>
         </div>
+        
+         <!-- Temporary stocks to populate page -->
         <div class="list__item is-idle js-item">
+         <!-- stock symbol -->
           <div class="symbol">ABSS</div>
+          <!--  stock info -->
           <div class="stonk">24.92 +0.72(+2.33%)</div>
+          <!-- mini chart script-->
           <script
             type="text/javascript"
             src="https://www.gstatic.com/charts/loader.js"
           ></script>
+          <!-- mini chart -->
           <div
             class="chart"
             id="chart_div3"
             style="width: 25%; height: 50px"
           ></div>
+          <!-- drag and drop handle -->
           <div class="drag-handle js-drag-handle"></div>
         </div>
+        
+        <!--temporary stock to populate page  -->
         <div class="list__item is-idle js-item">
+          <!-- stock symbol -->
           <div class="symbol">ABSE</div>
+          <!-- stock info -->
           <div class="stonk">24.92 +0.72(+2.33%)</div>
+          <!-- mini chart script -->
           <script
             type="text/javascript"
             src="https://www.gstatic.com/charts/loader.js"
           ></script>
+          <!-- mini chart -->
           <div
             class="chart"
             id="chart_div5"
             style="width: 25%; height: 50px"
           ></div>
+          <!-- drag and drop handle -->
           <div class="drag-handle js-drag-handle"></div>
 
         </div>
       </div>
     </div>
+    
+    <!-- grow box is a second blue rectangle hidden under the 1st one -->
+    <!-- it grows and shrinks to fake list container expanding animation -->
     <div id = "growBox"class="growBox">
     
 
-      <button id="removeElementBtn">Remove Element</button>
-      <button id="addElementBtn">Add Element</button>
-
+      
       <!-- I'm testing things here --Connor  -->
       <script type="module" defer>
        import {permissions_test } from "./modules/local-store.js"
@@ -212,6 +242,7 @@ window.onclick = function (event) {
 
       </script>
 
+      <!-- call js from file -->
       <script type="module" src="./home-view.js"></script>
   </body>
 </html>
