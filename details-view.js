@@ -1,13 +1,23 @@
+/*********************
+*   Details View JS  *
+*********************/
 
+// API loaders
 google.charts.load("current", { packages: ["corechart"] })
 google.charts.setOnLoadCallback(drawChart)
 
 
+
+
+/*********************
+*    Date Buttons    *
+*********************/
+
+// Css class modifier to mark button as pressed
 function markPressed(button) {
   // Remove "pressed" class from all buttons
   const buttons = document.querySelectorAll('input[type="button"]');
   buttons.forEach(btn => btn.classList.remove('pressed'));
-
   // Add "pressed" class to the clicked button
   button.classList.add('pressed');
   drawChart()
@@ -22,6 +32,7 @@ function getPressedButton() {
   return null; // No button is pressed
 }
 
+// Switch for displaying time title from button press
 function getButtonTitle(buttonValue) {
   switch (buttonValue) {
     case "1D":
@@ -45,6 +56,7 @@ function getButtonTitle(buttonValue) {
   }
 }
 
+// Switch to change graph range based on button press
 function getStonkData(buttonValue) {
   switch (buttonValue) {
     case "1D":
@@ -76,14 +88,9 @@ function getStonkData(buttonValue) {
   }
 }
 
-var timeLineData = [
-  ["Year", "Sales"],
-  ["1980", 2982],
-  ["1981", 2893],
-]
 
 
-
+// Sample data for table
 var timeLineTestData = [
   ["Year", "Sales"],
   ["1980", 2982],
@@ -166,6 +173,12 @@ var timeLineTestData = [
   ["2057", 4901],
 ]
 
+
+/*********************
+*       Chart        *
+*********************/
+
+// API chart draw function from google
 function drawChart() {
   const buttonValue = getPressedButton() || "1D"; // Default to "1D" if no button is pressed
   getStonkData(buttonValue);
@@ -193,6 +206,7 @@ function drawChart() {
     legend: {position: 'none'},
   };
 
+  // snag from html
   var chart = new google.visualization.AreaChart(document.getElementById("chart_div"));
   chart.draw(data, options);
 
