@@ -6,22 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>STOCKS, HOMEPAGE</title>
     <link rel="stylesheet" href="./details-view.css">
-    
-     </head>
+    </head>
 
 <header>
+<!-- Stock name and symbol with blue line -->
   <h2>Wells Fargo (WFC)</h2>
   <hr width="100%" size="2" color="#0196b1" noshade />
 </header>
+
+
 <body>
+<!-- Permanant back button -->
 <form action="index.html">
     <input type="submit" value="Go to previous Page">
 </form>
+<!-- white container box for graph-->
   <div class="mainBlock">
+    <!-- Script from google charts api for graph -->
     <script
       type="text/javascript"
       src="https://www.gstatic.com/charts/loader.js"
     ></script>
+    <!-- Austins Buttons for time control -->
     <div class="timelineButtons">
       <input type="button" value="1D" onclick="markPressed(this)" class="pressed">
       <input type="button" value="5D" onclick="markPressed(this)">
@@ -32,8 +38,11 @@
       <input type="button" value="5Y" onclick="markPressed(this)">
       <input type="button" value="ALL" onclick="markPressed(this)">
     </div>
+    
+    <!-- Chart -->
     <div id="chart_div" style="width: 100%; height: 400px"></div>
-
+    
+    <!-- Data table for stock information -->
     <table>
       <tr>
         <td>Previous Close</td>
@@ -77,5 +86,7 @@
       </tr>
     </table>
   </div>
+  
+  <!-- JS -->
    <script src="details-view.js"></script> 
 </body>
