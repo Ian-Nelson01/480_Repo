@@ -28,16 +28,6 @@ var text1 = [
 //const addButton = document.getElementById("addElementBtn")
 //const container = document.getElementById("container")
 
-document.addEventListener('DOMContentLoaded', function () {
-
-  const addButton = document.getElementById("addElementBtn")
-  const container = document.getElementById("container")
-  // Add event listener to the 'Add Element' button
-  addButton.addEventListener("click", addListItem)
-
-});
-
-
 
 
 /******************
@@ -329,36 +319,6 @@ function drawChart(chartId) {
   }
 }
 
-/***********************
- *   SEARCH DROPDOWN    *
- ***********************/
-// Function to toggle the dropdown visibility
-function toggleDropdown() {
-
-  const searchSuggest = document.getElementById("myResult");
-  searchSuggest.style.animationPlayState = "paused";
-
-  const dropdownContent = document.getElementById("myDropdown")
-  if (dropdownContent.style.display === "block") {
-    dropdownContent.style.display = "none"
-  } else {
-    dropdownContent.style.display = "block"
-  }
-}
-
-// Event listener to close the dropdown if clicking outside
-window.onclick = function (event) {
-  const dropdownContent = document.getElementById("myDropdown")
-  const submitButton = document.querySelector(".submit_button")
-
-  // Check if the click was outside the dropdown and the submit button
-  if (
-    !submitButton.contains(event.target) &&
-      !dropdownContent.contains(event.target)
-  ) {
-    dropdownContent.style.display = "none"
-  }
-}
 
 /***********************
  *      COLOR SYMBOL    *
