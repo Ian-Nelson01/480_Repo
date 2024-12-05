@@ -4,7 +4,24 @@
 
 // DO NOT TOUCH
 
-// Tutorial: https://tahazsh.com/blog/seamless-ui-with-js-drag-to-reorder-example
+// Link: https://github.com/TahaSh/drag-to-reorder
+
+/**
+MIT License
+
+Copyright (c) 2023 Taha Shashtari
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+**/
 
 /**
    Variables
@@ -260,13 +277,9 @@ function enablePageScroll() {
 }
 
 export function simulateDragAndDrop() {
-  // Find the last drag handle element
   const lastDragHandle = document.querySelector(".js-drag-handle:last-of-type");
 
-  // If there's no drag handle, do nothing
   if (!lastDragHandle) return;
-
-  // Step 1: Simulate mousedown/touchstart (dragStart behavior)
   const mouseDownEvent = new MouseEvent("mousedown", {
     clientX: 0, // You can adjust these values if needed
     clientY: 0,
@@ -275,8 +288,7 @@ export function simulateDragAndDrop() {
   });
 
   lastDragHandle.dispatchEvent(mouseDownEvent);
-
-  // Step 2: Simulate mouseup/touchend (dragEnd behavior)
+  
   const mouseUpEvent = new MouseEvent("mouseup", {
     clientX: 0, // Adjust if needed
     clientY: 0,
