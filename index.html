@@ -22,8 +22,56 @@
         placeholder="Search.."
         name="search"
       />
+      
+      <script>
+      
+
+/***********************
+ *   SEARCH DROPDOWN    *
+ ***********************/
+// Function to toggle the dropdown visibility
+function toggleDropdown() {
+
+  const searchSuggest = document.getElementById("myResult");
+  searchSuggest.style.animationPlayState = "paused";
+
+  const dropdownContent = document.getElementById("myDropdown")
+  if (dropdownContent.style.display === "block") {
+    dropdownContent.style.display = "none"
+  } else {
+    dropdownContent.style.display = "block"
+  }
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  const addButton = document.getElementById("addElementBtn")
+  const container = document.getElementById("container")
+  // Add event listener to the 'Add Element' button
+  addButton.addEventListener("click", addListItem)
+
+});
+
+
+
+// Event listener to close the dropdown if clicking outside
+window.onclick = function (event) {
+  const dropdownContent = document.getElementById("myDropdown")
+  const submitButton = document.querySelector(".submit_button")
+
+  // Check if the click was outside the dropdown and the submit button
+  if (
+    !submitButton.contains(event.target) &&
+      !dropdownContent.contains(event.target)
+  ) {
+    dropdownContent.style.display = "none"
+  }
+}
+
+      </script>
       <button onclick="toggleDropdown()" class="submit_button" type="submit">
-        
+        🔎︎
         <i class="fa fa-search"></i>
       </button>
     </div>
