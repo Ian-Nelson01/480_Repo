@@ -272,6 +272,20 @@ width: 100%;
   position: relative;
   will-change: transform;
 }
+
+.x-handle {
+  position: absolute;
+  right: 10px;  /* Position the button at the far right of the list item */
+  top: 50%;
+  transform: translateY(-50%);  /* Vertically center the "x" */
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+}
+
+.x-handle:hover {
+  color: red;  /* Change color on hover */
+}
 #chart_div5{
   visibility: hidden;
 }
