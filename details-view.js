@@ -2,6 +2,88 @@
 google.charts.load("current", { packages: ["corechart"] })
 google.charts.setOnLoadCallback(drawChart)
 
+
+function markPressed(button) {
+  // Remove "pressed" class from all buttons
+  const buttons = document.querySelectorAll('input[type="button"]');
+  buttons.forEach(btn => btn.classList.remove('pressed'));
+
+  // Add "pressed" class to the clicked button
+  button.classList.add('pressed');
+  drawChart()
+}
+
+// Function to get the currently pressed button
+function getPressedButton() {
+  const pressedButton = document.querySelector('input[type="button"].pressed');
+  if (pressedButton) {
+    return pressedButton.value; // Return the value of the pressed button
+  }
+  return null; // No button is pressed
+}
+
+function getButtonTitle(buttonValue) {
+  switch (buttonValue) {
+    case "1D":
+      return "Today";
+    case "5D":
+      return "Past 5 Days";
+    case "1M":
+      return "Past Month";
+    case "6M":
+      return "Past 6 Months";
+    case "YTD":
+      return "Year to Date";
+    case "1Y":
+      return "Past Year";
+    case "5Y":
+      return "Past 5 Years";
+    case "ALL":
+      return "All Time";
+    default:
+      return "Unknown Range";
+  }
+}
+
+function getStonkData(buttonValue) {
+  switch (buttonValue) {
+    case "1D":
+      console.log("fetch daily data and pass to timelineData");
+      break;
+    case "5D":
+      console.log("fetch 5 day data and pass to timelineData");
+      break;
+    case "1M":
+      console.log("fetch 1 month data and pass to timelineData");
+      break;
+    case "6M":
+      console.log("fetch 6 month data and pass to timelineData");
+      break;
+    case "YTD":
+      console.log("fetch yearly data and pass to timelineData");
+      break;
+    case "1Y":
+      console.log("fetch 1 year data and pass to timelineData");
+      break;
+    case "5Y":
+      console.log("fetch 5 year data and pass to timelineData");
+      break;
+    case "ALL":
+      console.log("fetch year to date data and pass to timelineData");
+      break;
+    default:
+      return "Unknown Range";
+  }
+}
+
+var timeLineData = [
+  ["Year", "Sales"],
+  ["1980", 2982],
+  ["1981", 2893],
+]
+
+
+
 var timeLineTestData = [
   ["Year", "Sales"],
   ["1980", 2982],
@@ -85,6 +167,8 @@ var timeLineTestData = [
 ]
 
 function drawChart() {
+  const buttonValue = getPressedButton() || "1D"; // Default to "1D" if no button is pressed
+  getStonkData(buttonValue);
   var data = google.visualization.arrayToDataTable(timeLineTestData);
 
   // Calculate the delta (change) from the first to the last data point
