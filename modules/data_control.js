@@ -10,6 +10,31 @@ export class StockSearchController {
         this.setupSearchListener();
     }
 
+
+
+
+// Function to generate random color in hexadecimal format
+    getRandomColor() {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    // Function to apply random outline colors to stock symbol
+    applyRandomColorToElement(element) {
+        const randomColor = this.getRandomColor();
+        element.style.backgroundColor = "#FFFFFF"; // White background for clean look
+        element.style.borderColor = randomColor; // Random border color
+    }
+
+
+
+
+
+
     setupSearchListener() {
         const searchField = document.querySelector('.search_field');
         if (!searchField) return;
@@ -205,6 +230,13 @@ export class StockSearchController {
                 let nextpage = "details-view.html?symbol=" + symbolData.symbol;
                 window.location.href = nextpage;
             });
+        }
+
+
+     // Apply random color to the stock symbol
+        const symbolElement = newStockElement.querySelector('.symbol');
+        if (symbolElement) {
+            this.applyRandomColorToElement(symbolElement);
         }
 
 
