@@ -190,6 +190,12 @@ export class StockSearchController {
             return;
         }
 
+        // Check if the list already contains 10 stocks
+        if (container.children.length >= 10) {
+            alert('You already have 10 stocks. Please remove one before adding a new one.');
+            return;
+        }
+
         // Create new stock element
         const newStockElement = document.createElement('div');
         newStockElement.className = 'list__item is-idle js-item';

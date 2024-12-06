@@ -124,18 +124,19 @@ window.onclick = function (event) {
         <button id="deleteButton" onclick="deleteSplash()">Delete</button>
       </div>
 
+      <script>
+        // Function to delete the splash box
+        function deleteSplash() {
+          const splash = document.getElementById("splash");
+          if (splash) {  // Ensure splash element exists
+            splash.remove();  // Removes the splash box from the DOM
+          }
+        }
+      </script>
+
       <!-- list container, utilizes dropdown library for fun moving around -->
       <div id="container"  class="list js-list">
 
-<script>
-      // Function to delete the splash box
-      function deleteSplash() {
-        const splash = document.getElementById("splash");
-        if (splash) {  // Ensure splash element exists
-          splash.remove();  // Removes the splash box from the DOM
-        }
-      }
-    </script>
 
       </div>
     </div>
