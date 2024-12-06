@@ -236,7 +236,7 @@ export class StockSearchController {
             height: 25,
             width: 80,
             chartArea: {
-                left: 0,
+                left: 20,
                 top: 0,
                 right: 0,
                 bottom: 0,
