@@ -2,6 +2,11 @@
 *   Details View JS  *
 *********************/
 
+// Load funtions from interface.js
+import { query_intraday } from './modules/interface.js';
+import { query_daily } from './modules/interface.js';
+import { query_monthly } from './modules/interface.js';
+
 // API loaders
 google.charts.load("current", { packages: ["corechart"] })
 google.charts.setOnLoadCallback(drawChart)
