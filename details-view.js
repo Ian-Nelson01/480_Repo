@@ -21,6 +21,8 @@ let urlParams = new URLSearchParams(queryString);
 let symbol = urlParams.get('symbol');
 var stockSymbol = symbol;
 
+document.addEventListener('DOMContentLoaded', getStonkData("1D"));
+
 /*********************
 *    Date Buttons    *
 *********************/
