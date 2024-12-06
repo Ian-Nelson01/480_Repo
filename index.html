@@ -46,6 +46,7 @@ function toggleDropdown() {
   if (dropdownContent.style.display === "block") {
     dropdownContent.style.display = "none"
   } else {
+  
     dropdownContent.style.display = "block"
   }
 }
@@ -80,7 +81,7 @@ window.onclick = function (event) {
 
       </script>
       <!--button to display dropdown box, looks like magnifying glass-->
-      <button onclick="toggleDropdown()" class="submit_button" type="submit">
+      <button class="submit_button" type="submit">
         🔎︎
         <i class="fa fa-search"></i>
       </button>
@@ -95,7 +96,7 @@ window.onclick = function (event) {
           rocket_launch
         </span>
         <!-- Stock symbol in preview -->
-        <div class = "suggest-symbol">
+        <div id= "suggestSymbol" class = "suggest-symbol">
           DGI
         </div>
          <!-- stock info in preview -->
@@ -168,7 +169,7 @@ window.onclick = function (event) {
       document.addEventListener('DOMContentLoaded', function () {
         addAllStocks(localStorage.getItem("symbols"))
        // set periodic update function
-       //window.setInterval(periodic, 2000);
+       window.setInterval(periodic, 2000);
       });
 
 

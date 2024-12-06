@@ -270,21 +270,7 @@ styleSheet.insertRule(`
 // Get rocket element by its ID
 var rocket = document.getElementById("rocket");
 // Add an event listener for the 'click' event
-rocket.addEventListener("click", function() {
-    // trigger list addition (GONNA HAVE TO REWORK THIS TO MERGE WITH MIGUEL)
-	addListItem();
-	// Get stock result preview by its ID
-	const searchSuggest = document.getElementById("myResult");
-	// Set the animation play state to "running" (not pause)
-	searchSuggest.style.animationPlayState = "running";
-	// Add the 'clicked' class to start the animation
-	rocket.classList.add("clicked");
-	// After 0.85 seconds (animation duration), remove the 'clicked' class 
-	// removal (and addition) is only way to allow hovering again
-	setTimeout(function() {
-		rocket.classList.remove("clicked");
-	}, 850);
-});
+
 
 
 

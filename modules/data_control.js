@@ -35,16 +35,41 @@ export class StockSearchController {
 
 
 
-    setupSearchListener() {
-        const searchField = document.querySelector('.search_field');
-        if (!searchField) return;
+ 
+        
+        
+        
+         // Check if the key is a letter (A-Z) or a number (0-9)
+       setupSearchListener() {
+    const searchField = document.querySelector('.search_field');
+    if (!searchField) return;
 
-        // Handle input changes for search
-        //searchField.addEventListener('input', (e) => {
-        //    const query = e.target.value.toUpperCase();
-        //    this.handleSearchInput(query);
-        //});
+    // Debounce timeout to wait for typing to stop before making the request
+    let debounceTimeout;
 
+
+
+
+
+
+    searchField.addEventListener('input', (e) => {
+        const searchText = e.target.value.toUpperCase(); // Get the full text in the search bar
+
+        // Clear previous debounce timeout if any
+        clearTimeout(debounceTimeout);
+
+        // Set a new timeout to handle the delayed request
+        debounceTimeout = setTimeout(() => {
+            this.handleAnyPress(searchText);
+        }, 30);  // 300ms delay before making the request
+    });
+
+
+
+        
+        
+        
+        
         // Handle Enter key press
         searchField.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
@@ -73,6 +98,30 @@ export class StockSearchController {
                 // Clear the search field
                 document.querySelector('.search_field').value = '';
 
+
+
+// Get rocket element by its ID
+var rocket = document.getElementById("rocket");
+// Add an event listener for the 'click' event
+	
+	// Get stock result preview by its ID
+	const searchSuggest = document.getElementById("myResult");
+	// Set the animation play state to "running" (not pause)
+	searchSuggest.style.animationPlayState = "running";
+	// Add the 'clicked' class to start the animation
+	rocket.classList.add("clicked");
+	// After 0.85 seconds (animation duration), remove the 'clicked' class 
+	// removal (and addition) is only way to allow hovering again
+	setTimeout(function() {
+		rocket.classList.remove("clicked");
+		
+	  const dropdownContent = document.getElementById("myDropdown")
+		 toggleDropdown()
+	}, 850);
+
+
+
+
                 // Clear the dropdown
                 //this.clearSearchResults();
             } else {
@@ -94,6 +143,46 @@ export class StockSearchController {
             console.error(error)
         }
     }
+    
+  handleAnyPress(searchText) {
+    // First, verify if the stock symbol exists
+    this.verifySymbol(searchText).then(symbolData => {
+        if (symbolData) {
+          // enusure dropdown is open
+          const dropdownContent = document.getElementById("myDropdown")
+           dropdownContent.style.display = "block"
+        
+            // If the stock symbol is valid, show a preview
+            const suggestSymbol = document.getElementById('suggestSymbol');
+            
+           suggestSymbol.textContent = searchText;
+
+            // Optionally, you can apply a visual effect or feedback to indicate it's a valid symbol
+            const searchDiv = document.querySelector('.search_field');
+        
+
+            setTimeout(() => {
+                searchDiv.style.backgroundColor = ''; // Reset background color
+            }, 500);
+        } else {
+            // If it's not a valid symbol, show an error or feedback
+            const searchDiv = document.querySelector('.search_field');
+            searchDiv.style.backgroundColor = 'crimson';  // Red color for invalid symbol
+
+            setTimeout(() => {
+                searchDiv.style.backgroundColor = ''; // Reset background color
+            }, 500);
+
+            console.error("Invalid Symbol");  // Optionally, log an error
+        }
+    }).catch(error => {
+        console.error("Error verifying symbol:", error);
+    });
+}
+
+
+        
+        
     async verifySymbol(symbol) {
         try {
             const apiKey = get_key();
@@ -258,10 +347,31 @@ export class StockSearchController {
             this.applyRandomColorToElement(symbolElement);
         }
 
-
+        newStockElement.style.visibility = 'hidden'
         // Add the new element to the container
         container.appendChild(newStockElement);
 
+       setTimeout(() => {
+       
+	// Start position (x = -200px)
+	let currentX = -200;
+
+    
+	// Interval function to animate the div
+	const interval = setInterval(() => {
+	newStockElement.style.visibility = 'visible'
+		// Increase the x position
+		currentX += 25; // Move 5px per interval
+		// Set the new position
+		newStockElement.style.left = currentX + "px";
+		// Stop the animation when it reaches x = 0
+		if (currentX >= 0) {
+			clearInterval(interval); // Stop the animation
+		}
+	}, 20); // 20ms per frame (50 frames per second)
+ }, 500)
+
+ 
         // Fetch intraday data and initialize the chart
         const chartData = await this.fetchIntradayData(symbolData.symbol);
         if (typeof google !== 'undefined' && google.charts) {
@@ -383,4 +493,9 @@ export function addAllStocks (array){
     parsedArray.forEach((element) => {
       stockSearch.addStockToList(element);
     });
+}
+
+// Delay function that returns a promise
+function delay(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
