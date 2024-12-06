@@ -12,7 +12,14 @@ google.charts.load("current", { packages: ["corechart"] })
 google.charts.setOnLoadCallback(drawChart)
 
 
-var stockSymbol = "aapl"
+
+
+
+// Get the sybol from the  URL
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
+let symbol = urlParams.get('symbol');
+var stockSymbol = symbol;
 
 /*********************
 *    Date Buttons    *
