@@ -312,10 +312,76 @@ export class StockSearchController {
             return;
         }
 
-        this.searchDebounceTimeout = setTimeout(() => {
-            this.performSearch(query);
+        this.searchDebounceTimeout = setTimeout(async () => {
+            try {
+                // Perform search and fetch results
+                const searchResults = await this.performSearch(query);
+
+                // Update the dropdown with search results
+                this.updateSearchDropdown(searchResults);
+            } catch (error) {
+                console.error('Error performing search:', error);
+            }
         }, 300);
     }
+
+    //try and find stocks that match what is searched
+    async performSearch(query) {
+        try {
+            const apiKey = get_key();
+            const url = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${apiKey}`;
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.bestMatches && data.bestMatches.length > 0) {
+                // Map and return relevant fields
+                return data.bestMatches.map(match => ({
+                    symbol: match['1. symbol'],
+                    name: match['2. name']
+                }));
+            }
+            return [];
+        } catch (error) {
+            console.error('Error fetching search results:', error);
+            return [];
+        }
+    }
+
+    //updates dropdown below searchbar
+    updateSearchDropdown(searchResults) {
+        const dropdown = document.querySelector('.dropdown-content');
+
+        if (!dropdown) {
+            console.error('Dropdown element not found');
+            return;
+        }
+
+        // Clear existing results
+        dropdown.innerHTML = '';
+
+        if (searchResults.length === 0) {
+            dropdown.style.display = 'none';
+            return;
+        }
+
+        // Populate the dropdown with new results
+        searchResults.forEach(result => {
+            const option = document.createElement('div');
+            option.className = 'search_dropdown_item';
+            option.textContent = `${result.symbol} - ${result.name}`;
+            option.addEventListener('click', () => {
+                // Handle click on the dropdown item
+                document.querySelector('.search_field').value = result.symbol;
+                this.handleEnterPress(result.symbol); // Trigger the add stock logic
+                dropdown.style.display = 'none'; // Hide dropdown
+            });
+            dropdown.appendChild(option);
+        });
+
+        dropdown.style.display = 'block';
+    }
+
 }
 
 // Initialize the controller
