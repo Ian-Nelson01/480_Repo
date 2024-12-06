@@ -187,6 +187,26 @@ export class StockSearchController {
                 newStockElement.remove();
             });
         }
+        
+        // Add click handler for the stock symbol
+        const symbolButton = newStockElement.querySelector('.symbol');
+        if (symbolButton) {
+            symbolButton.addEventListener('click', () => {
+                let nextpage = "details-view.html?symbol=" + symbolData.symbol;
+                window.location.href = nextpage;
+            });
+        }
+        
+             
+        // reuse click handler for the stock stonk
+        const stonkButton = newStockElement.querySelector('.stonk');
+        if (stonkButton) {
+            stonkButton.addEventListener('click', () => {
+                let nextpage = "details-view.html?symbol=" + symbolData.symbol;
+                window.location.href = nextpage;
+            });
+        }
+
 
         // Add the new element to the container
         container.appendChild(newStockElement);
