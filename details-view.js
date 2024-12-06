@@ -18,14 +18,28 @@ var stockSymbol = "aapl"
 *    Date Buttons    *
 *********************/
 
+//button listener
+document.addEventListener("DOMContentLoaded", () => {
+  // Add event listeners to buttons
+  const buttons = document.querySelectorAll('.timelineButtons input[type="button"]');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => markPressed(button));
+  });
+});
+
 // Css class modifier to mark button as pressed
-function markPressed(button) {
+export function markPressed(button) {
   // Remove "pressed" class from all buttons
   const buttons = document.querySelectorAll('input[type="button"]');
   buttons.forEach(btn => btn.classList.remove('pressed'));
   // Add "pressed" class to the clicked button
   button.classList.add('pressed');
-  drawChart()
+  
+  // Only call getStonkData and drawChart after button press
+  const buttonValue = getPressedButton() || "1D"; // Default to "1D" if no button is pressed
+  getStonkData(buttonValue).then(() => {
+    getStonkData(buttonValue);
+  });
 }
 
 // Function to get the currently pressed button
