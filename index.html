@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>STOCKS, HOMEPAGE</title>
-    <script type="module" src="./modules/data_control.js"></script>
     <link rel="stylesheet" href="./home-view.css">
-    <link rel="stylesheet" href="dropdown.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=rocket_launch" />
   </head>
 
@@ -116,20 +114,19 @@ window.onclick = function (event) {
       <!-- this is not actually the lists container, just a decoration -->
     <div class="mainBlock">
 
+      <div id="splash" class="list__item is-idle js-item" style="height: 500px; display: block;">
+        <IMG SRC="BanjaPop.gif">
+        <h1>Oof</h1>
+        <h2>You Have No Stocks!</h2>
+        <p>Start by typing the symbol for your favorite publicly traded companies in the search bar!</p>
+
+        <!-- Add Delete Button -->
+        <button id="deleteButton" onclick="deleteSplash()">Delete</button>
+      </div>
+
       <!-- list container, utilizes dropdown library for fun moving around -->
       <div id="container"  class="list js-list">
 
-        
-
-          <div id="splash" class="list__item is-idle js-item" style="height: 500px; display: block;">
-          <IMG SRC="BanjaPop.gif">
-          <h1>Oof</h1>
-          <h2>You Have No Stocks!</h2>
-          <p>Start by typing the symbol for your favorite publicly traded companies in the search bar!</p>
-          
-          <!-- Add Delete Button -->
-          <button id="deleteButton" onclick="deleteSplash()">Delete</button>
-        </div>
 <script>
       // Function to delete the splash box
       function deleteSplash() {
@@ -202,5 +199,7 @@ window.onclick = function (event) {
 
       <!-- call js from file -->
       <script type="module" src="./home-view.js"></script>
+      <script type="module" src="./modules/data_control.js"></script>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </body>
 </html>
