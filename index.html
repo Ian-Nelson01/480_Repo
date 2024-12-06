@@ -149,51 +149,31 @@ window.onclick = function (event) {
       
       <!-- I'm testing things here --Connor  -->
       <script type="module" defer>
-       import {permissions_test } from "./modules/local-store.js"
+       import {permissions_test, 
+               periodic,
+               retrieve_sym
+        } from "./modules/local-store.js"
        import {fillAllRows, updateStonkBySymbol} from "./modules/home_control.js"
-       import {query_realtime,
+       import {query_endpoint,
                query_intraday,
                query_daily,
                query_monthly
        } from "./modules/interface.js"
 
+       import {addAllStocks} from "./modules/data_control.js"
+
        permissions_test()
 
-       const testData = [
-         { symbol: "DGI", stonk: "05.59 +0.82(+1.19%)" },
-         { symbol: "Stk2", stonk: "04.92 +0.72(+2.33%)" },
-         { symbol: "Stk3", stonk: "04.92 +0.72(+2.33%)" },
-         { symbol: "Stk4", stonk: "011.02 -1.50(-0.71%)" }, // Example new data
-       ];
+       // try to add cookie timer
+      document.addEventListener('DOMContentLoaded', function () {
+        addAllStocks(localStorage.getItem("symbols"))
+       // set periodic update function
+       //window.setInterval(periodic, 2000);
+      });
 
-       fillAllRows(testData)
 
-       updateStonkBySymbol("DGI", "no money");
 
-       //var stocks = ["DHC","DFS", "CBLL"]
-       //query_realtime(stocks)
 
-       //const apple = query_intraday("AAPL", 2)
-       //console.log(apple)
-
-       // I hate promises
-       query_intraday("AAPL", 3).then((result) => {
-         console.log(result); // Logs the resolved object
-       }).catch((error) => {
-         console.error("Error:", error);
-       });
-
-        query_daily("IBM").then((result) => {
-         console.log(result); // Logs the resolved object
-       }).catch((error) => {
-         console.error("Error:", error);
-       });
-
-       query_monthly("DFS").then((result) => {
-         console.log(result); // Logs the resolved object
-       }).catch((error) => {
-         console.error("Error:", error);
-       });
 
 
       </script>

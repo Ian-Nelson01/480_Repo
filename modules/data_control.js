@@ -40,10 +40,10 @@ export class StockSearchController {
         if (!searchField) return;
 
         // Handle input changes for search
-        searchField.addEventListener('input', (e) => {
-            const query = e.target.value.toUpperCase();
-            this.handleSearchInput(query);
-        });
+        //searchField.addEventListener('input', (e) => {
+        //    const query = e.target.value.toUpperCase();
+        //    this.handleSearchInput(query);
+        //});
 
         // Handle Enter key press
         searchField.addEventListener('keypress', (e) => {
@@ -74,16 +74,26 @@ export class StockSearchController {
                 document.querySelector('.search_field').value = '';
 
                 // Clear the dropdown
-                this.clearSearchResults();
+                //this.clearSearchResults();
             } else {
-                this.displayError('Invalid symbol. Please try again.');
+                //this.displayError('Invalid symbol. Please try again.');
+                console.error("Invalid Symbol")
+
+                // flash the search field red
+                const searchDiv = document.querySelector('.search_field')
+                searchDiv.style.backgroundColor = 'crimson';
+                
+                setTimeout(() => {
+                    searchDiv.style.backgroundColor = '';
+                }, 500)
+
+
             }
+            //this.displayError('Error adding stock. Please try again.');
         } catch (error) {
-            console.error('Error handling enter press:', error);
-            this.displayError('Error adding stock. Please try again.');
+            console.error(error)
         }
     }
-
     async verifySymbol(symbol) {
         try {
             const apiKey = get_key();
@@ -172,6 +182,9 @@ export class StockSearchController {
     }
 
     async addStockToList(symbolData, priceData) {
+
+        console.log(symbolData, priceData)
+
         if (!priceData) {
             priceData = {
                 price: '0.00',
@@ -335,25 +348,25 @@ export class StockSearchController {
         chart.draw(dataTable, options);
     }
 
-    handleSearchInput(query) {
-        if (this.searchDebounceTimeout) {
-            clearTimeout(this.searchDebounceTimeout);
-        }
+    //handleSearchInput(query) {
+    //    if (this.searchDebounceTimeout) {
+    //        clearTimeout(this.searchDebounceTimeout);
+    //    }
 
-        if (query.length < this.MIN_SEARCH_LENGTH) {
-            this.clearSearchResults();
-            return;
-        }
+    //    if (query.length < this.MIN_SEARCH_LENGTH) {
+    //        this.clearSearchResults();
+    //        return;
+    //    }
 
-        if (query.length > this.MAX_SEARCH_LENGTH) {
-            document.querySelector('.search_field').value = query.slice(0, this.MAX_SEARCH_LENGTH);
-            return;
-        }
+    //    if (query.length > this.MAX_SEARCH_LENGTH) {
+    //        document.querySelector('.search_field').value = query.slice(0, this.MAX_SEARCH_LENGTH);
+    //        return;
+    //    }
 
-        this.searchDebounceTimeout = setTimeout(() => {
-            this.performSearch(query);
-        }, 300);
-    }
+    //    this.searchDebounceTimeout = setTimeout(() => {
+    //        this.performSearch(query);
+    //    }, 300);
+    //}
 }
 
 // Initialize the controller
@@ -361,3 +374,13 @@ const stockSearch = new StockSearchController();
 
 // Export for use in other modules
 export default stockSearch;
+
+export function addAllStocks (array){
+    console.log(array)
+    const parsedArray = JSON.parse(array)
+    console.log(parsedArray)
+
+    parsedArray.forEach((element) => {
+      stockSearch.addStockToList(element);
+    });
+}
