@@ -138,6 +138,10 @@ function getStonkData(buttonValue) {
         // Add formatted date and close price to timeLineTestData
         timeLineTestData.push([date, closePrice]);
       });
+      // Reverse the order of all but the first entry (the header)
+      const dataEntries = timeLineTestData.slice(1); // Get all data entries, excluding the header
+      dataEntries.reverse(); // Reverse the data entries
+      timeLineTestData = [timeLineTestData[0], ...dataEntries]; // Reassemble the array with the header and reversed data
 
       // Redraw the chart after data is updated
       drawChart();
@@ -169,6 +173,10 @@ function getStonkData(buttonValue) {
         // Add formatted date and close price to timeLineTestData
         timeLineTestData.push([date, closePrice]);
       });
+      // Reverse the order of all but the first entry (the header)
+      const dataEntries = timeLineTestData.slice(1); // Get all data entries, excluding the header
+      dataEntries.reverse(); // Reverse the data entries
+      timeLineTestData = [timeLineTestData[0], ...dataEntries]; // Reassemble the array with the header and reversed data
 
       // Redraw the chart after data is updated
       drawChart();
@@ -199,6 +207,10 @@ function getStonkData(buttonValue) {
         // Add formatted date and close price to timeLineTestData
         timeLineTestData.push([date, closePrice]);
       });
+      // Reverse the order of all but the first entry (the header)
+      const dataEntries = timeLineTestData.slice(1); // Get all data entries, excluding the header
+      dataEntries.reverse(); // Reverse the data entries
+      timeLineTestData = [timeLineTestData[0], ...dataEntries]; // Reassemble the array with the header and reversed data
 
       // Redraw the chart after data is updated
       drawChart();
@@ -229,6 +241,10 @@ function getStonkData(buttonValue) {
         // Add formatted date and close price to timeLineTestData
         timeLineTestData.push([date, closePrice]);
       });
+      // Reverse the order of all but the first entry (the header)
+      const dataEntries = timeLineTestData.slice(1); // Get all data entries, excluding the header
+      dataEntries.reverse(); // Reverse the data entries
+      timeLineTestData = [timeLineTestData[0], ...dataEntries]; // Reassemble the array with the header and reversed data
 
       // Redraw the chart after data is updated
       drawChart();
@@ -259,6 +275,10 @@ function getStonkData(buttonValue) {
         // Add formatted date and close price to timeLineTestData
         timeLineTestData.push([date, closePrice]);
       });
+      // Reverse the order of all but the first entry (the header)
+      const dataEntries = timeLineTestData.slice(1); // Get all data entries, excluding the header
+      dataEntries.reverse(); // Reverse the data entries
+      timeLineTestData = [timeLineTestData[0], ...dataEntries]; // Reassemble the array with the header and reversed data
 
       // Redraw the chart after data is updated
       drawChart();
@@ -276,7 +296,7 @@ function getStonkData(buttonValue) {
       // Get the last 60 data points (most recent 30 days)
       const last60months = Object.keys(data)
         .sort((a, b) => new Date(b) - new Date(a)) // Sort timestamps in descending order (most recent first)
-        .slice(0, 12); // Get the most recent 60 entries
+        .slice(0, 60); // Get the most recent 60 entries
 
       // Loop through the last 60 sorted timestamps and extract the date and close price
       last60months.forEach((timestamp) => {
@@ -289,6 +309,10 @@ function getStonkData(buttonValue) {
         // Add formatted date and close price to timeLineTestData
         timeLineTestData.push([date, closePrice]);
       });
+      // Reverse the order of all but the first entry (the header)
+      const dataEntries = timeLineTestData.slice(1); // Get all data entries, excluding the header
+      dataEntries.reverse(); // Reverse the data entries
+      timeLineTestData = [timeLineTestData[0], ...dataEntries]; // Reassemble the array with the header and reversed data
 
       // Redraw the chart after data is updated
       drawChart();
