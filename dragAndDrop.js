@@ -40,10 +40,7 @@ let prevRect = {};
 **/
 
 export function getAllItems() {
-  if (!items?.length) {
-    items = Array.from(listContainer.querySelectorAll(".js-item"));
-  }
-  return items;
+  return Array.from(listContainer.querySelectorAll(".js-item"));
 }
 
 export function getIdleItems() {
