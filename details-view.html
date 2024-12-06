@@ -10,7 +10,7 @@
 
 <header>
 <!-- Stock name and symbol with blue line -->
-  <h2>Wells Fargo (WFC)</h2>
+  <h2 id="compSymbol">SYMBOL</h2>
   <hr width="100%" size="2" color="#0196b1" noshade />
 </header>
 
@@ -44,49 +44,50 @@
     
     <!-- Data table for stock information -->
     <table>
-      <tr>
-        <td>Previous Close</td>
-        <td>64.02</td>
-        <td>Day's Range</td>
-        <td>64.00 - 65.21</td>
-        <td>Market Cap (intraday)</td>
-        <td>Jan 15, 2025</td>
-        <td>Earnings Date</td>
-        <td>Jan 15, 2025</td>
-      </tr>
-      <tr>
-        <td>Open</td>
-        <td>64.02</td>
-        <td>52 Week Range</td>
-        <td>38.58 - 65.21</td>
-        <td>Beta (5Y Monthly)</td>
-        <td>1.60 (2.50%)</td>
-        <td>Forward Dividend & Yield</td>
-        <td>1.60 (2.50%)</td>
-      </tr>
-      <tr>
-        <td>Bid</td>
-        <td>--</td>
-        <td>Volume</td>
-        <td>20,119,370</td>
-        <td>PE Ratio (TTM)</td>
-        <td>Aug 9, 2024</td>
-        <td>Ex-Dividend Date</td>
-        <td>Aug 9, 2024</td>
-      </tr>
-      <tr>
-        <td>Ask</td>
-        <td>--</td>
-        <td>Avg. Volume</td>
-        <td>17,292,963</td>
-        <td>EPS (TTM)</td>
-        <td>66.27</td>
-        <td>1y Target Est</td>
-        <td>66.27</td>
-      </tr>
+       <tr>
+    <td>Previous Close</td>
+    <td id="previousClose">__</td>
+    <td>Day's Range</td>
+    <td id="daysRange">__</td>
+    <td>Market Cap (intraday)</td>
+    <td id="marketCap">__</td>
+    <td>Earnings Date</td>
+    <td id="earningsDate">__</td>
+  </tr>
+  <tr>
+    <td>Open</td>
+    <td id="open">__</td>
+    <td>52 Week Range</td>
+    <td id="weekRange">__</td>
+    <td>Beta (5Y Monthly)</td>
+    <td id="beta">__</td>
+    <td>Forward Dividend & Yield</td>
+    <td id="dividendYield">__</td>
+  </tr>
+  <tr>
+    <td>Bid</td>
+    <td id="bid">--</td>
+    <td>Volume</td>
+    <td id="volume">__</td>
+    <td>PE Ratio (TTM)</td>
+    <td id="peRatio">__</td>
+    <td>Ex-Dividend Date</td>
+    <td id="exDividendDate">__</td>
+  </tr>
+  <tr>
+    <td>Ask</td>
+    <td id="ask">--</td>
+    <td>Avg. Volume</td>
+    <td id="avgVolume">__</td>
+    <td>EPS (TTM)</td>
+    <td id="eps">__</td>
+    <td>1y Target Est</td>
+    <td id="targetEst">__</td>
+  </tr>
     </table>
   </div>
   
   <!-- JS -->
    <script type="module" src="details-view.js"></script>
+   <script src="./modules/details_control.js" type="module"></script>
 </body>
