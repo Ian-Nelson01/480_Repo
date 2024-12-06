@@ -10,7 +10,7 @@
 
 <header>
 <!-- Stock name and symbol with blue line -->
-  <h2>Wells Fargo (WFC)</h2>
+<h2><span id="compSymbol">SYMBOL</span></h2>
   <hr width="100%" size="2" color="#0196b1" noshade />
 </header>
 
@@ -29,14 +29,14 @@
     ></script>
     <!-- Austins Buttons for time control -->
     <div class="timelineButtons">
-      <input type="button" value="1D" class="pressed">
-      <input type="button" value="5D">
-      <input type="button" value="1M">
-      <input type="button" value="6M">
-      <input type="button" value="YTD">
-      <input type="button" value="1Y">
-      <input type="button" value="5Y">
-      <input type="button" value="ALL">
+      <input type="button" value="1D" onclick="markPressed(this)" class="pressed">
+      <input type="button" value="5D" onclick="markPressed(this)">
+      <input type="button" value="1M" onclick="markPressed(this)">
+      <input type="button" value="6M" onclick="markPressed(this)">
+      <input type="button" value="YTD" onclick="markPressed(this)">
+      <input type="button" value="1Y" onclick="markPressed(this)">
+      <input type="button" value="5Y" onclick="markPressed(this)">
+      <input type="button" value="ALL" onclick="markPressed(this)">
     </div>
     
     <!-- Chart -->
@@ -46,47 +46,50 @@
     <table>
       <tr>
         <td>Previous Close</td>
-        <td>64.02</td>
+        <td>__</td>
         <td>Day's Range</td>
-        <td>64.00 - 65.21</td>
+        <td>__</td>
         <td>Market Cap (intraday)</td>
-        <td>Jan 15, 2025</td>
+        <td>__</td>
         <td>Earnings Date</td>
-        <td>Jan 15, 2025</td>
+        <td>__</td>
       </tr>
       <tr>
         <td>Open</td>
-        <td>64.02</td>
+        <td>__</td>
         <td>52 Week Range</td>
-        <td>38.58 - 65.21</td>
+        <td>__</td>
         <td>Beta (5Y Monthly)</td>
-        <td>1.60 (2.50%)</td>
+        <td>__</td>
         <td>Forward Dividend & Yield</td>
-        <td>1.60 (2.50%)</td>
+        <td>__</td>
       </tr>
       <tr>
         <td>Bid</td>
         <td>--</td>
         <td>Volume</td>
-        <td>20,119,370</td>
+        <td>__</td>
         <td>PE Ratio (TTM)</td>
-        <td>Aug 9, 2024</td>
+        <td>__</td>
         <td>Ex-Dividend Date</td>
-        <td>Aug 9, 2024</td>
+        <td>__</td>
       </tr>
       <tr>
         <td>Ask</td>
         <td>--</td>
         <td>Avg. Volume</td>
-        <td>17,292,963</td>
+        <td>__</td>
         <td>EPS (TTM)</td>
-        <td>66.27</td>
+        <td>__</td>
         <td>1y Target Est</td>
-        <td>66.27</td>
+        <td>__</td>
       </tr>
     </table>
   </div>
   
   <!-- JS -->
-   <script type="module" src="details-view.js"></script>
+   <script src="details-view.js"></script> 
+   <script src="./modules/details_control.js" type="module">
+
+   </script> 
 </body>

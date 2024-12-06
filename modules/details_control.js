@@ -21,11 +21,12 @@ console.log(`Symbol: ${SYMBOL}`)
 //}
 
 function populateTable(realtimeData, monthlyData) {
+    // Selecting by index
     // Real-time data
     document.querySelectorAll("table td")[1].textContent = realtimeData.previousClose // Previous Close
     document.querySelectorAll("table td")[3].textContent = `${realtimeData.low} - ${realtimeData.high}` // Day's Range
     document.querySelectorAll("table td")[9].textContent = realtimeData.open // Open
-    document.querySelectorAll("table td")[13].textContent = realtimeData.volume // Volume
+    document.querySelectorAll("table td")[19].textContent = realtimeData.volume // Volume
 
     // Historical data (use most recent month for demo purposes)
     const mostRecentMonth = Object.keys(monthlyData)[0]
@@ -37,7 +38,7 @@ function populateTable(realtimeData, monthlyData) {
 
 function updateCompanyInfo(symbol, name) {
   document.getElementById("compSymbol").textContent = SYMBOL
-  document.getElementById("compName").textContent = name
+  //document.getElementById("compName").textContent = name
 }
 
 async function init() {
@@ -48,6 +49,7 @@ async function init() {
             if (realtimeData && monthlyData) {
                 console.log("Realtime Data:", realtimeData)
                 console.log("Monthly Data:", monthlyData)
+                // populate tables
                 populateTable(realtimeData, monthlyData)
             } else {
                 console.warn("One (or more) funcions returned no data.")
@@ -58,4 +60,6 @@ async function init() {
         })
 }
 
-init()
+document.addEventListener("DOMContentLoaded", () => {
+    init();
+});
