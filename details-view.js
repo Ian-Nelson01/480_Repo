@@ -35,7 +35,7 @@ export function markPressed(button) {
   // Add "pressed" class to the clicked button
   button.classList.add('pressed');
   
-  // Only call getStonkData and drawChart after button press
+  // Only call getStonkData after button press
   const buttonValue = getPressedButton() || "1D"; // Default to "1D" if no button is pressed
   getStonkData(buttonValue).then(() => {
     getStonkData(buttonValue);
