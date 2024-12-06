@@ -174,7 +174,7 @@ dropdown css
 .mainBlock {
   margin: 10px;
   padding: 10px;
- 
+ min-height: 520px; 
   border-color: black;
   border-style: solid;
   border-width: 0px;

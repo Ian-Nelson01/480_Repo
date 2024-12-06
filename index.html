@@ -119,71 +119,27 @@ window.onclick = function (event) {
       <!-- list container, utilizes dropdown library for fun moving around -->
       <div id="container"  class="list js-list">
 
-         <!-- Temporary stocks to populate page -->
-        <div class="list__item is-idle js-item">
-          <!-- stock symbol -->
-          <div class = "symbol">DGI</div>
-          <!-- stock info -->
-          <div class = "stonk">
-            75.59 +0.82(+1.19%)
-          </div>
-          <!-- js script for mini chart -->
-          <script
-            type="text/javascript"
-            src="https://www.gstatic.com/charts/loader.js"
-          ></script>
-          <!-- mini chart -->
-          <div
-            class="chart"
-            id="chart_div2"
-            style="width: 25%; height: 50px"
-          ></div>
-          <!-- drag and drop handle     6 dots -->
-          <div class="drag-handle js-drag-handle"></div>
-        </div>
+        
 
-         <!-- Temporary stocks to populate page -->
-        <div class="list__item is-idle js-item">
-         <!-- stock symbol -->
-          <div class="symbol">ABSS</div>
-          <!--  stock info -->
-          <div class="stonk">24.92 +0.72(+2.33%)</div>
-          <!-- mini chart script-->
-          <script
-            type="text/javascript"
-            src="https://www.gstatic.com/charts/loader.js"
-          ></script>
-          <!-- mini chart -->
-          <div
-            class="chart"
-            id="chart_div3"
-            style="width: 25%; height: 50px"
-          ></div>
-          <!-- drag and drop handle -->
-          <div class="drag-handle js-drag-handle"></div>
+          <div id="splash" class="list__item is-idle js-item" style="height: 500px; display: block;">
+          <IMG SRC="BanjaPop.gif">
+          <h1>Oof</h1>
+          <h2>You Have No Stocks!</h2>
+          <p>Start by typing the symbol for your favorite publicly traded companies in the search bar!</p>
+          
+          <!-- Add Delete Button -->
+          <button id="deleteButton" onclick="deleteSplash()">Delete</button>
         </div>
+<script>
+      // Function to delete the splash box
+      function deleteSplash() {
+        const splash = document.getElementById("splash");
+        if (splash) {  // Ensure splash element exists
+          splash.remove();  // Removes the splash box from the DOM
+        }
+      }
+    </script>
 
-        <!--temporary stock to populate page  -->
-        <div class="list__item is-idle js-item">
-          <!-- stock symbol -->
-          <div class="symbol">ABSE</div>
-          <!-- stock info -->
-          <div class="stonk">24.92 +0.72(+2.33%)</div>
-          <!-- mini chart script -->
-          <script
-            type="text/javascript"
-            src="https://www.gstatic.com/charts/loader.js"
-          ></script>
-          <!-- mini chart -->
-          <div
-            class="chart"
-            id="chart_div5"
-            style="width: 25%; height: 50px"
-          ></div>
-          <!-- drag and drop handle -->
-          <div class="drag-handle js-drag-handle"></div>
-
-        </div>
       </div>
     </div>
     
