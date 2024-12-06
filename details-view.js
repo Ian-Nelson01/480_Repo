@@ -79,33 +79,249 @@ function getButtonTitle(buttonValue) {
 function getStonkData(buttonValue) {
   switch (buttonValue) {
     case "1D":
-      console.log("fetch daily data and pass to timelineData");
-      break;
+      query_intraday(stockSymbol, 1440)
+      .then((data) => {
+        // Clear the current test data before populating it
+        timeLineTestData = [["Time", "Price"]]; // Headers
+
+        // Assuming data is an object with timestamp as the key
+        const timestamps = Object.keys(data).sort(); // Sort timestamps in ascending order (oldest to newest)
+
+        // Loop through sorted timestamps and extract time and close price
+        timestamps.forEach((timestamp) => {
+          // Format the timestamp to show only the time (HH:MM)
+          const time = new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+          // Extract the closing price
+          const closePrice = parseFloat(data[timestamp].close); // Ensure it's a number
+
+          // Add formatted time and close price to timeLineTestData
+          timeLineTestData.push([time, closePrice]);
+        });
+
+        // Redraw the chart after data is updated
+        drawChart();
+      })
+      .catch((error) => {
+        console.error("Error fetching intraday data:", error);
+      });
+    break;
+
     case "5D":
-      console.log("fetch 5 day data and pass to timelineData");
-      break;
+    query_daily(stockSymbol)
+    .then((data) => {
+      // Clear the current test data before populating it
+      timeLineTestData = [["Date", "Price"]]; // Headers
+
+      // Get the last 5 data points (most recent 5 days)
+      const lastFiveDays = Object.keys(data)
+        .sort((a, b) => new Date(b) - new Date(a)) // Sort timestamps in descending order (most recent first)
+        .slice(0, 5); // Get the most recent 5 entries
+
+      // Loop through the last 5 sorted timestamps and extract the date and close price
+      lastFiveDays.forEach((timestamp) => {
+        // Format the timestamp to show only the date (YYYY-MM-DD)
+        const date = new Date(timestamp).toLocaleDateString(); // Format to "YYYY-MM-DD"
+
+        // Extract the closing price
+        const closePrice = parseFloat(data[timestamp].close); // Ensure it's a number
+
+        // Add formatted date and close price to timeLineTestData
+        timeLineTestData.push([date, closePrice]);
+      });
+
+      // Redraw the chart after data is updated
+      drawChart();
+    })
+    .catch((error) => {
+      console.error("Error fetching daily data:", error);
+    });
+  break;
+
     case "1M":
-      console.log("fetch 1 month data and pass to timelineData");
-      break;
+      query_daily(stockSymbol)
+      .then((data) => {
+      // Clear the current test data before populating it
+      timeLineTestData = [["Date", "Price"]]; // Headers
+
+      // Get the last 30 data points (most recent 30 days)
+      const last30Days = Object.keys(data)
+        .sort((a, b) => new Date(b) - new Date(a)) // Sort timestamps in descending order (most recent first)
+        .slice(0, 30); // Get the most recent 30 entries
+
+      // Loop through the last 30 sorted timestamps and extract the date and close price
+      last30Days.forEach((timestamp) => {
+        // Format the timestamp to show only the date (YYYY-MM-DD)
+        const date = new Date(timestamp).toLocaleDateString(); // Format to "YYYY-MM-DD"
+
+        // Extract the closing price
+        const closePrice = parseFloat(data[timestamp].close); // Ensure it's a number
+
+        // Add formatted date and close price to timeLineTestData
+        timeLineTestData.push([date, closePrice]);
+      });
+
+      // Redraw the chart after data is updated
+      drawChart();
+    })
+    .catch((error) => {
+      console.error("Error fetching daily data:", error);
+    });
+  break;
     case "6M":
-      console.log("fetch 6 month data and pass to timelineData");
-      break;
+      query_daily(stockSymbol)
+      .then((data) => {
+      // Clear the current test data before populating it
+      timeLineTestData = [["Date", "Price"]]; // Headers
+
+      // Get the last 182 data points (most recent 30 days)
+      const last182Days = Object.keys(data)
+        .sort((a, b) => new Date(b) - new Date(a)) // Sort timestamps in descending order (most recent first)
+        .slice(0, 182); // Get the most recent 182 entries
+
+      // Loop through the last 30 sorted timestamps and extract the date and close price
+      last182Days.forEach((timestamp) => {
+        // Format the timestamp to show only the date (YYYY-MM-DD)
+        const date = new Date(timestamp).toLocaleDateString(); // Format to "YYYY-MM-DD"
+
+        // Extract the closing price
+        const closePrice = parseFloat(data[timestamp].close); // Ensure it's a number
+
+        // Add formatted date and close price to timeLineTestData
+        timeLineTestData.push([date, closePrice]);
+      });
+
+      // Redraw the chart after data is updated
+      drawChart();
+    })
+    .catch((error) => {
+      console.error("Error fetching daily data:", error);
+    });
+  break;
     case "YTD":
-      console.log("fetch yearly data and pass to timelineData");
-      break;
+      query_monthly(stockSymbol)
+      .then((data) => {
+      // Clear the current test data before populating it
+      timeLineTestData = [["Date", "Price"]]; // Headers
+
+      // Get the last 182 data points (most recent 30 days)
+      const last12months = Object.keys(data)
+        .sort((a, b) => new Date(b) - new Date(a)) // Sort timestamps in descending order (most recent first)
+        .slice(0, 12); // Get the most recent 182 entries
+
+      // Loop through the last 182 sorted timestamps and extract the date and close price
+      last12months.forEach((timestamp) => {
+        // Format the timestamp to show only the date (YYYY-MM-DD)
+        const date = new Date(timestamp).toLocaleDateString(); // Format to "YYYY-MM-DD"
+
+        // Extract the closing price
+        const closePrice = parseFloat(data[timestamp].close); // Ensure it's a number
+
+        // Add formatted date and close price to timeLineTestData
+        timeLineTestData.push([date, closePrice]);
+      });
+
+      // Redraw the chart after data is updated
+      drawChart();
+    })
+    .catch((error) => {
+      console.error("Error fetching daily data:", error);
+    });
+  break;
     case "1Y":
-      console.log("fetch 1 year data and pass to timelineData");
-      break;
+      query_monthly(stockSymbol)
+      .then((data) => {
+      // Clear the current test data before populating it
+      timeLineTestData = [["Date", "Price"]]; // Headers
+
+      // Get the last 12 data points (most recent 30 days)
+      const last12months = Object.keys(data)
+        .sort((a, b) => new Date(b) - new Date(a)) // Sort timestamps in descending order (most recent first)
+        .slice(0, 12); // Get the most recent 12 entries
+
+      // Loop through the last 12 sorted timestamps and extract the date and close price
+      last12months.forEach((timestamp) => {
+        // Format the timestamp to show only the date (YYYY-MM-DD)
+        const date = new Date(timestamp).toLocaleDateString(); // Format to "YYYY-MM-DD"
+
+        // Extract the closing price
+        const closePrice = parseFloat(data[timestamp].close); // Ensure it's a number
+
+        // Add formatted date and close price to timeLineTestData
+        timeLineTestData.push([date, closePrice]);
+      });
+
+      // Redraw the chart after data is updated
+      drawChart();
+    })
+    .catch((error) => {
+      console.error("Error fetching daily data:", error);
+    });
+  break;
     case "5Y":
-      console.log("fetch 5 year data and pass to timelineData");
-      break;
+      query_monthly(stockSymbol)
+      .then((data) => {
+      // Clear the current test data before populating it
+      timeLineTestData = [["Date", "Price"]]; // Headers
+
+      // Get the last 60 data points (most recent 30 days)
+      const last60months = Object.keys(data)
+        .sort((a, b) => new Date(b) - new Date(a)) // Sort timestamps in descending order (most recent first)
+        .slice(0, 12); // Get the most recent 60 entries
+
+      // Loop through the last 60 sorted timestamps and extract the date and close price
+      last60months.forEach((timestamp) => {
+        // Format the timestamp to show only the date (YYYY-MM-DD)
+        const date = new Date(timestamp).toLocaleDateString(); // Format to "YYYY-MM-DD"
+
+        // Extract the closing price
+        const closePrice = parseFloat(data[timestamp].close); // Ensure it's a number
+
+        // Add formatted date and close price to timeLineTestData
+        timeLineTestData.push([date, closePrice]);
+      });
+
+      // Redraw the chart after data is updated
+      drawChart();
+    })
+    .catch((error) => {
+      console.error("Error fetching daily data:", error);
+    });
+  break;
     case "ALL":
-      console.log("fetch year to date data and pass to timelineData");
-      break;
+  query_monthly(stockSymbol)
+    .then((data) => {
+      // Clear the current test data before populating it
+      timeLineTestData = [["Date", "Price"]]; // Headers
+
+      // Get all available data (no truncation, show all available months)
+      const allMonths = Object.keys(data)
+        .sort((a, b) => new Date(a) - new Date(b)); // Sort timestamps in ascending order (oldest to newest)
+
+      // Loop through all sorted timestamps and extract the date and close price
+      allMonths.forEach((timestamp) => {
+        // Format the timestamp to show only the date (YYYY-MM-DD)
+        const date = new Date(timestamp).toLocaleDateString(); // Format to "YYYY-MM-DD"
+
+        // Extract the closing price
+        const closePrice = parseFloat(data[timestamp].close); // Ensure it's a number
+
+        // Add formatted date and close price to timeLineTestData
+        timeLineTestData.push([date, closePrice]);
+      });
+
+      // Redraw the chart after data is updated
+      drawChart();
+    })
+    .catch((error) => {
+      console.error("Error fetching monthly data:", error);
+    });
+  break;
     default:
       return "Unknown Range";
   }
 }
+
 
 
 
