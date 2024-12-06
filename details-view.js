@@ -338,14 +338,30 @@ var timeLineTestData = [
 // API chart draw function from google
 function drawChart() {
   const buttonValue = getPressedButton() || "1D"; // Default to "1D" if no button is pressed
-  getStonkData(buttonValue);
+  
   var data = google.visualization.arrayToDataTable(timeLineTestData);
 
   // Calculate the delta (change) from the first to the last data point
   var firstValue = data.getValue(0, 1);  // 2nd row, 2nd column 
   var lastValue = data.getValue(data.getNumberOfRows() - 1, 1);  // Last row, 2nd column
   var delta = lastValue - firstValue;
-  
+
+  // Calculate the min and max close prices to adjust the y-axis
+  var minValue = Infinity;
+  var maxValue = -Infinity;
+
+  for (var i = 0; i < data.getNumberOfRows(); i++) {
+    var closePrice = data.getValue(i, 1);  // Close price is the second column
+    if (closePrice < minValue) {
+      minValue = closePrice;
+    }
+    if (closePrice > maxValue) {
+      maxValue = closePrice;
+    }
+  }
+
+  // Set a small margin for the y-axis to ensure the chart doesn't cut off data points
+  var margin = (maxValue - minValue) * 0.05; // 5% margin
 
   // Set the color based on the delta (green if positive, red if negative)
   var chartColor = delta >= 0 ? '#28a745' : '#dc3545';
@@ -358,12 +374,15 @@ function drawChart() {
       titleTextStyle: { color: "#0196b1" }, 
       slantedText: true,
     },
-    vAxis: { minValue: 0 },
+    vAxis: { 
+      minValue: minValue - margin,  // Dynamic min value with margin
+      maxValue: maxValue + margin,  // Dynamic max value with margin
+    },
     colors: [chartColor],
-    legend: {position: 'none'},
+    legend: { position: 'none' },
   };
 
-  // snag from html
+  // Create the chart and draw it
   var chart = new google.visualization.AreaChart(document.getElementById("chart_div"));
   chart.draw(data, options);
 
@@ -371,5 +390,4 @@ function drawChart() {
   window.addEventListener("resize", function () {
     chart.draw(data, options);
   });
-
 }
